@@ -8,4 +8,9 @@
         <item>Workout</item>
         <item>Go to the park and help clean</item>
     </string-array>
+
+    <string-array name="filters">
+        <item>Tags</item>
+        <item>Date</item>
+    </string-array>
 </resources>
