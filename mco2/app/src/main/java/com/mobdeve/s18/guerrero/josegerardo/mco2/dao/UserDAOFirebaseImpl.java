@@ -86,4 +86,5 @@ public class UserDAOFirebaseImpl implements UserDAO{
     public int deleteUser(String username) {
         return 0;
     }
+
 }
