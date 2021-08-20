@@ -31,6 +31,8 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="SIGN UP"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/pinkred"
         app:layout_constraintRight_toLeftOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/app_name"
         android:layout_marginTop="20dp"
@@ -42,6 +44,8 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="LOG IN"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/pinkred"
         app:layout_constraintTop_toBottomOf="@id/app_name"
         app:layout_constraintLeft_toRightOf="@id/guideline"
         android:layout_marginTop="20dp"/>

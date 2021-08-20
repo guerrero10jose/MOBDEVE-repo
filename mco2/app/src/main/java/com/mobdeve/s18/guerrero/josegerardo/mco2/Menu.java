@@ -40,6 +40,10 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 intent = new Intent(getApplicationContext(), CreatePost.class);
                 startActivity(intent);
                 break;
+            case R.id.frnd_cv:
+                intent = new Intent(getApplicationContext(), Friends.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }
