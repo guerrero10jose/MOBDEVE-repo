@@ -1,27 +1,39 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mobdeve.s18.guerrero.josegerardo.mco2.dao.UserDAO;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.dao.UserDAOFirebaseImpl;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.RegisterBinding;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.models.User;
 
 public class Register extends AppCompatActivity {
 
-    private Button btn_signup;
+    private RegisterBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        binding = RegisterBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        btn_signup = findViewById(R.id.btn_signup);
+        UserDAO userDAO = new UserDAOFirebaseImpl(getApplicationContext());
 
-        btn_signup.setOnClickListener(new View.OnClickListener() {
+        binding.btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                User user = new User();
+                user.setUsername(binding.etUsername.getText().toString());
+                user.setEmail(binding.etEmail.getText().toString());
+                user.setPassword(binding.etPassword.getText().toString());
+
+                userDAO.addUser(user);
+
                 Intent intent = new Intent(getApplicationContext(), MainView.class);
                 startActivity(intent);
             }
