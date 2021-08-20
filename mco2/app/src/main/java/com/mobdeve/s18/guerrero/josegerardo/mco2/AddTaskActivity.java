@@ -16,8 +16,6 @@ import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-
-import com.mobdeve.s18.guerrero.josegerardo.mco2.adapter.AddTaskAdapter;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.ActivityAddTaskBinding;
 
 import java.text.SimpleDateFormat;
@@ -31,15 +29,12 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_task);
         binding = ActivityAddTaskBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Button btn_date = findViewById(R.id.btn_date);
         Button btn_time = findViewById(R.id.btn_time);
         Button btn_save = findViewById(R.id.btn_save);
-
-
 
         btn_date.setOnClickListener(v -> {
             DialogFragment datePicker = new DatePickerFragment();
@@ -59,7 +54,6 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
             intent.putExtra("time", binding.tvTime.getText().toString());
             setResult(RESULT_OK, intent);
             finish();
-
         });
 
     }

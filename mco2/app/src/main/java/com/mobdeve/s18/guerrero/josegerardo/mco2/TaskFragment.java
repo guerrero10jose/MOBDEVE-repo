@@ -63,9 +63,7 @@ public class TaskFragment extends Fragment {
                             data.getStringExtra("tag"),
                             notes, false, date, data.getStringExtra("time")
                     );
-
-                    taskArrayList.add(task);
-
+                    taskAdapter.addTask(task);
                 }
             });
 
