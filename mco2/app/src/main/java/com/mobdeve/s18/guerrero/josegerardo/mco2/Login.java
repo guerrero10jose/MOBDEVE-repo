@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.dao.UserDAO;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.dao.UserDAOFirebaseImpl;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.LoginBinding;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.User;
 
 import java.util.ArrayList;
@@ -45,6 +46,14 @@ public class Login extends AppCompatActivity {
                     for(int i = 0; i < userArrayList.size(); i++) {
                         if(userArrayList.get(i).getUsername().equals(username)) {
                             if(userArrayList.get(i).getPassword().equals(password)) {
+
+                                // store to sharedpref (session)
+                                SessionManage sessionManage = new SessionManage(getApplicationContext());
+
+                                // User info
+                                User user = new User(username, userArrayList.get(i).getEmail(), password);
+                                sessionManage.saveSession(user);
+
                                 Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), MainView.class);
                                 startActivity(intent);
@@ -64,4 +73,22 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
+    /*
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SessionManage sessionManage = new SessionManage(getApplicationContext());
+
+
+        String loggedin = sessionManage.getSession();
+
+        if(loggedin != null) {
+            Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), MainView.class);
+            startActivity(intent);
+            finish();
+        }
+    } */
 }

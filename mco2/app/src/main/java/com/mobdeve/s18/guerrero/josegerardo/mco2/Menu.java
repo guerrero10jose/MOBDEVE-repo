@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
+
 public class Menu extends AppCompatActivity implements View.OnClickListener {
 
     private CardView messages, post, friends, notes;
@@ -44,8 +46,24 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 intent = new Intent(getApplicationContext(), Friends.class);
                 startActivity(intent);
                 break;
+            case R.id.notes_cv:
+                logout(v);
+                finish();
             default:
                 break;
         }
+    }
+
+    public void logout(View v) {
+        Intent intent;
+
+        SessionManage sessionManage = new SessionManage(getApplicationContext());
+        sessionManage.removeSession();
+
+        intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+        finish();
     }
 }

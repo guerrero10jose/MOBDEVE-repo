@@ -29,6 +29,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityAddTaskBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -80,4 +81,8 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
         textView2.setText(hourOfDay + ":" + minute);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
