@@ -16,15 +16,25 @@ import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.ActivityAddTaskBinding;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class AddTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private ActivityAddTaskBinding binding;
+
+    private FirebaseDatabase rootNode;
+    private DatabaseReference reference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +58,24 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
         });
 
         btn_save.setOnClickListener(v -> {
+
+            // to db
+            rootNode = FirebaseDatabase.getInstance();
+            reference = rootNode.getReference("tasks");
+
+            Notes notes = new Notes();
+
+            Task task = new Task(binding.etTask.getText().toString(),
+                    binding.etTag.getText().toString(),
+                    notes, false,
+                    binding.tvDate.getText().toString(),
+                    binding.tvTime.getText().toString());
+
+            // session
+            SessionManage sessionManage = new SessionManage(getApplicationContext());
+
+            reference.child(sessionManage.getSession()).child(binding.etTask.getText().toString()).setValue(task);
+
             Intent intent = new Intent();
             intent.putExtra("task", binding.etTask.getText().toString());
             intent.putExtra("tag", binding.etTag.getText().toString());

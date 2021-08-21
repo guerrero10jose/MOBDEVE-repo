@@ -6,11 +6,11 @@ import java.util.Date;
 
 public class Task {
     private String task, tag, time;
-    private Date date;
+    private String date;
     private Notes notes;
     private boolean checked;
 
-    public Task(String task, String tag, Notes notes, boolean checked, Date date, String time) {
+    public Task(String task, String tag, Notes notes, boolean checked, String date, String time) {
         this.task = task;
         this.tag = tag;
         this.notes = notes;
@@ -41,11 +41,11 @@ public class Task {
         this.tag = tag;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -53,7 +53,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(TaskAdapter.TaskViewHolder holder, int position) {
 
         holder.tv_task.setText(taskArrayList.get(position).getTask());
-        holder.tv_date.setText(taskArrayList.get(position).dateToStringShort());
+        //holder.tv_date.setText(taskArrayList.get(position).toString());
 
         Notes notesArrayList = new Notes();
         for(int i = 0; i < taskArrayList.size(); i++) {
@@ -73,7 +73,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public int getItemCount() {
-        return taskArrayList.size();
+        return (taskArrayList == null) ? 0 : taskArrayList.size();
     }
 
     protected class TaskViewHolder extends RecyclerView.ViewHolder{

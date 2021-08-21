@@ -53,7 +53,7 @@ public class DataHelper {
         data.add(new Task( "Jog for 5km starting 5am",
                 "Exercise",
                 notes,
-                false, date,
+                false, date.toString(),
                 "10:00"
 
         ));
@@ -62,17 +62,16 @@ public class DataHelper {
                 "MOBDEVE",
                 temp,
                 false,
-                date,
+                date.toString(),
                 "10:00"
 
         ));
 
         data.add(new Task( "MC01 Proposal Submission",
                 "MOBDEVE",
-
                 temp,
                 true,
-                date,
+                date.toString(),
                 "10:00"
 
         ));
