@@ -71,4 +71,8 @@ public class MainView extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        // shouldnt be able to go back
+    }
 }
