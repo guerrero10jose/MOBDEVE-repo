@@ -1,7 +1,6 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Message;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Post;
 
 import java.util.ArrayList;
 import java.util.Collections;

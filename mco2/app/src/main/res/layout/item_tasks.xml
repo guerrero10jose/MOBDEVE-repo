@@ -75,7 +75,7 @@
                         android:paddingEnd="10dp"
                         android:text="Jog for 5km starting 5 am"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
 
                 </LinearLayout>
@@ -88,12 +88,23 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:gravity="center"
+                        android:text="Mon"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
                         android:id="@+id/tv_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="3dp"
                         android:gravity="center"
                         android:text="Sept 1"
+                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -102,9 +113,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
                         android:gravity="center"
                         android:text="18:00"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 

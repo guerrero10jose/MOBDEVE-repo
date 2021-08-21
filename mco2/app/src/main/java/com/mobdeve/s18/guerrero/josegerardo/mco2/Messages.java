@@ -1,15 +1,12 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobdeve.s18.guerrero.josegerardo.mco2.adapter.MessageAdapter;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.ActivityMainBinding;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Message;
 
 import java.util.ArrayList;

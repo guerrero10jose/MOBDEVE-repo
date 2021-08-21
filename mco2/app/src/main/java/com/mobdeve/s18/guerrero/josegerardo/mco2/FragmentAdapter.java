@@ -1,7 +1,5 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

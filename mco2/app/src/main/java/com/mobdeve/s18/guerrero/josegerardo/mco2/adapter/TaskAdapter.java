@@ -13,7 +13,10 @@ import com.mobdeve.s18.guerrero.josegerardo.mco2.R;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
@@ -54,7 +57,23 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.tv_tag.setText(taskArrayList.get(position).getTag());
         holder.tv_task.setText(taskArrayList.get(position).getTask());
-        holder.tv_date.setText(taskArrayList.get(position).getDate());
+
+        String shortDate = "";
+        String day = "";
+        SimpleDateFormat ft1 = new SimpleDateFormat("E, MMM dd yyyy");
+        SimpleDateFormat ft2 = new SimpleDateFormat("E");
+        SimpleDateFormat ft3 = new SimpleDateFormat("MMM dd");
+
+        try {
+            Date date = ft1.parse(taskArrayList.get(position).getDate());
+            day = ft2.format(date);
+            shortDate = ft3.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        holder.tv_day.setText(day);
+        holder.tv_date.setText(shortDate);
         holder.tv_time.setText(taskArrayList.get(position).getTime());
         //holder.tv_date.setText(taskArrayList.get(position).toString());
 
@@ -66,8 +85,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 }
             }
         }
-
-
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.context);
         holder.rv_noteslist.setLayoutManager(linearLayoutManager);
@@ -83,12 +100,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     protected class TaskViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tv_tag, tv_task, tv_date, tv_time;
+        TextView tv_tag, tv_task, tv_date, tv_time, tv_day;
         RecyclerView rv_noteslist;
         public TaskViewHolder(View itemView) {
             super(itemView);
             tv_tag = itemView.findViewById(R.id.tv_tag);
             tv_task = itemView.findViewById(R.id.tv_task);
+            tv_day = itemView.findViewById(R.id.tv_day);
             tv_date = itemView.findViewById(R.id.tv_date);
             tv_time = itemView.findViewById(R.id.tv_time);
             rv_noteslist = itemView.findViewById(R.id.rv_noteslist);
