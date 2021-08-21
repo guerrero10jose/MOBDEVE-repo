@@ -39,6 +39,9 @@ public class Register extends AppCompatActivity {
                 if(username.isEmpty() || email.isEmpty() || password.isEmpty() || confirm_password.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
                 }
+                else if (password.length() < 8){
+                    Toast.makeText(getApplicationContext(), "Passwords should contain at least 8 characters", Toast.LENGTH_SHORT).show();
+                }
                 else if (!password.equals(confirm_password)){
                     Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
                 }

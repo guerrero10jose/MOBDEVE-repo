@@ -59,6 +59,9 @@ public class Login extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
+                            else if (password.length() < 8){
+                                Toast.makeText(getApplicationContext(), "Passwords should contain at least 8 characters", Toast.LENGTH_SHORT).show();
+                            }
                             else {
                                 Toast.makeText(getApplicationContext(), "Incorrect Password", Toast.LENGTH_SHORT).show();
                             }
