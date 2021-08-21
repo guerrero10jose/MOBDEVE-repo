@@ -52,8 +52,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(TaskAdapter.TaskViewHolder holder, int position) {
 
+        holder.tv_tag.setText(taskArrayList.get(position).getTag());
         holder.tv_task.setText(taskArrayList.get(position).getTask());
         holder.tv_date.setText(taskArrayList.get(position).dateToStringShort());
+        holder.tv_time.setText(taskArrayList.get(position).getTime());
 
         Notes notesArrayList = new Notes();
         for(int i = 0; i < taskArrayList.size(); i++) {
@@ -63,6 +65,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 }
             }
         }
+
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.context);
         holder.rv_noteslist.setLayoutManager(linearLayoutManager);
@@ -78,12 +82,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     protected class TaskViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tv_task, tv_date;
+        TextView tv_tag, tv_task, tv_date, tv_time;
         RecyclerView rv_noteslist;
         public TaskViewHolder(View itemView) {
             super(itemView);
+            tv_tag = itemView.findViewById(R.id.tv_tag);
             tv_task = itemView.findViewById(R.id.tv_task);
             tv_date = itemView.findViewById(R.id.tv_date);
+            tv_time = itemView.findViewById(R.id.tv_time);
             rv_noteslist = itemView.findViewById(R.id.rv_noteslist);
         }
     }

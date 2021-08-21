@@ -1,20 +1,15 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2.adapter;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobdeve.s18.guerrero.josegerardo.mco2.R;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
-
-import java.util.ArrayList;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
@@ -37,7 +32,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     @Override
     public void onBindViewHolder(NotesAdapter.NotesViewHolder holder, int position) {
         String note = notesArrayList.getNotesArrayList().get(position);
-        holder.notes.setText("- " + note);
+        holder.notes.setText(note);
     }
 
     @Override

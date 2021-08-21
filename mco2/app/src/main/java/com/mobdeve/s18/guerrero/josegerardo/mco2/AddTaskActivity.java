@@ -4,23 +4,18 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
+
 import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.ActivityAddTaskBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
@@ -78,7 +73,16 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView textView2 = findViewById(R.id.tv_time);
-        textView2.setText(hourOfDay + ":" + minute);
+        String temp = "";
+        if(hourOfDay < 10) {
+            temp += "0";
+        }
+        temp += hourOfDay + ":";
+        if(minute < 10) {
+            temp += "0";
+        }
+        temp += minute;
+        textView2.setText(temp);
     }
 
     @Override
