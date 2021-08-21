@@ -1,9 +1,5 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2.models;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Task {
     private String task, tag, time;
     private String date;
@@ -17,12 +13,6 @@ public class Task {
         this.checked = checked;
         this.date = date;
         this.time = time;
-    }
-
-    public String dateToStringShort () {
-        SimpleDateFormat date = new SimpleDateFormat ("MMM d");
-
-        return date.format(this.date);
     }
 
     public String getTask() {

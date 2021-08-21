@@ -54,7 +54,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.tv_tag.setText(taskArrayList.get(position).getTag());
         holder.tv_task.setText(taskArrayList.get(position).getTask());
-        holder.tv_date.setText(taskArrayList.get(position).dateToStringShort());
+        holder.tv_date.setText(taskArrayList.get(position).getDate());
         holder.tv_time.setText(taskArrayList.get(position).getTime());
         //holder.tv_date.setText(taskArrayList.get(position).toString());
 
