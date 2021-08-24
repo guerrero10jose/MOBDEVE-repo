@@ -31,7 +31,7 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
 
         switch(v.getId()) {
             case R.id.text_note_cv:
-                intent = new Intent(getApplicationContext(), AddNoteActivity.class);
+                intent = new Intent(getApplicationContext(), IndivNotes.class);
                 startActivity(intent);
                 break;
             case R.id.doodle_cv:

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:textColor="@color/pinkred"
         android:text="OPTIONS"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -60,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="A D D  T E X T  N O T E"
+                    android:text="N O T E S"
                     android:textAlignment="center"
                     android:textSize="12dp" />
             </LinearLayout>

@@ -1,15 +1,19 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
 
 public class MainView extends AppCompatActivity {
 
@@ -69,6 +73,53 @@ public class MainView extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+
+        switch ((item.getItemId())) {
+            case R.id.messages:
+                intent = new Intent(getApplicationContext(), Messages.class);
+                startActivity(intent);
+                break;
+            case R.id.post:
+                intent = new Intent(getApplicationContext(), CreatePost.class);
+                startActivity(intent);
+                break;
+            case R.id.friends:
+                intent = new Intent(getApplicationContext(), Friends.class);
+                startActivity(intent);
+                break;
+            case R.id.logout:
+                logout();
+                finish();
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void logout() {
+        Intent intent;
+
+        SessionManage sessionManage = new SessionManage(getApplicationContext());
+        sessionManage.removeSession();
+
+        intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+        finish();
     }
 
     @Override

@@ -6,26 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".Friends">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="FRIENDS"
-        android:textSize="18sp"
+        android:textColor="@color/pinkred"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtfld_add"
-        android:layout_width="330dp"
-        android:layout_height="0dp"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         android:layout_margin="8dp"
-        android:background="@drawable/rounded_bg"
-        android:elevation="8dp"
-        android:gravity="start|top"
+        android:background="@drawable/custom_input"
         android:hint="Add Friends"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/frnd_ic"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
@@ -34,30 +42,28 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/btn_add"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <Button
         android:id="@+id/btn_add"
         android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/rounded_bg"
         android:backgroundTint="@color/design_default_color_primary"
         android:text="ADD"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/txtfld_add"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/title"
-        />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_frndlist"
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtfld_add" />

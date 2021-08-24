@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IndivNotes">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="NOTES"
+        android:textColor="@color/pinkred"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/notes"
+        android:background="@drawable/rounded_bg2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/task"
+        android:layout_marginTop="-5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:paddingTop="20dp"
+        android:padding="5dp"
+        android:layout_alignBottom="@id/task"
+        android:text="• Wake up early \n• Don't forget to eat after!"
+        />
+
+    <TextView
+        android:id="@+id/task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/rounded_bg"
+        android:backgroundTint="@color/pinkred"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Run 5km exercise "
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/pinkred"
+        android:text="EDIT"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/guideline" />
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/pinkred"
+        android:text="SAVE"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
