@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.ActivityEditTaskBinding;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Subtask;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
 import java.text.SimpleDateFormat;
@@ -50,13 +50,13 @@ public class EditTaskActivity extends AppCompatActivity implements DatePickerDia
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("tasks");
 
-            Notes notes = new Notes();
+            Subtask subtask = new Subtask();
 
 
             //change this
             Task task = new Task(binding.etTask.getText().toString(),
                     binding.etTag.getText().toString(),
-                    notes, false,
+                    subtask, false,
                     binding.tvDate.getText().toString(),
                     binding.tvTime.getText().toString());
 
@@ -72,11 +72,6 @@ public class EditTaskActivity extends AppCompatActivity implements DatePickerDia
             intent.putExtra("time", binding.tvTime.getText().toString());
             startActivity(intent);
             finish();
-        });
-
-        binding.btnSubtask.setOnClickListener(v -> {
-           Intent intent = new Intent(getApplicationContext(), SubtaskActivity.class);
-           startActivity(intent);
         });
 
         binding.btnDelete.setOnClickListener(v -> {

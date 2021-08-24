@@ -121,26 +121,14 @@
 
                 </LinearLayout>
 
-
-
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btn_add_comment"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:adjustViewBounds="true"
-                android:layout_gravity="center"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="6dp"
-                android:backgroundTint="@color/black"
-                android:background="@drawable/ic_add_note" />
 
         </LinearLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_noteslist"
+            android:id="@+id/rv_subtasklist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/tv_filter"

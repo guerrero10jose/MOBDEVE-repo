@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.ActivityAddTaskBinding;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Subtask;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
 import java.text.SimpleDateFormat;
@@ -50,11 +50,11 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("tasks");
 
-            Notes notes = new Notes();
+            Subtask subtask = new Subtask();
 
             Task task = new Task(binding.etTask.getText().toString(),
                     binding.etTag.getText().toString(),
-                    notes, false,
+                    subtask, false,
                     binding.tvDate.getText().toString(),
                     binding.tvTime.getText().toString());
 

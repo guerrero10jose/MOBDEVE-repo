@@ -39,85 +39,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
 
-    <LinearLayout
-        android:id="@+id/layout_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:weightSum="10"
-        app:layout_constraintTop_toBottomOf="@+id/et_task"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="50dp"
-            android:text="Select Date"
-            android:drawableStart="@drawable/ic_date"
-            android:drawablePadding="15dp"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:background="@drawable/custom_input"
-            android:textSize="14sp"
-            android:layout_weight="9"/>
-
-        <Button
-            android:id="@+id/btn_date"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginEnd="50dp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/pinkred"
-            android:text="Select"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:weightSum="10"
-        app:layout_constraintTop_toBottomOf="@+id/layout_date"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="50dp"
-            android:text="Select Time"
-            android:drawableStart="@drawable/ic_time"
-            android:drawablePadding="15dp"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:background="@drawable/custom_input"
-            android:textSize="14sp"
-            android:layout_weight="9"/>
-
-        <Button
-            android:id="@+id/btn_time"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginEnd="50dp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/pinkred"
-            android:text="Select"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-
     <Button
         android:id="@+id/btn_delete"
         android:layout_width="120dp"
@@ -128,7 +49,7 @@
         android:backgroundTint="@color/pinkred"
         android:text="Delete"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_time" />
+        app:layout_constraintTop_toBottomOf="@+id/et_task" />
 
 
     <Button
@@ -141,6 +62,6 @@
         android:backgroundTint="@color/pinkred"
         android:text="Save"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_time" />
+        app:layout_constraintTop_toBottomOf="@+id/et_task" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

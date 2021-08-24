@@ -9,7 +9,7 @@ import androidx.cardview.widget.CardView;
 
 public class AddMenu extends AppCompatActivity implements View.OnClickListener {
 
-    private CardView text_note_cv, doodle_cv, subtask_cv;
+    private CardView text_note_cv, doodle_cv, edit_cv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,11 +18,11 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
 
         text_note_cv = findViewById(R.id.text_note_cv);
         doodle_cv = findViewById(R.id.doodle_cv);
-        subtask_cv = findViewById(R.id.subtask_cv);
+        edit_cv = findViewById(R.id.edit_cv);
 
         text_note_cv.setOnClickListener(this);
         doodle_cv.setOnClickListener(this);
-        subtask_cv.setOnClickListener(this);
+        edit_cv.setOnClickListener(this);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
                 intent = new Intent(getApplicationContext(), AddDoodleActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.subtask_cv:
-                intent = new Intent(getApplicationContext(), SubtaskActivity.class);
+            case R.id.edit_cv:
+                intent = new Intent(getApplicationContext(), EditTaskActivity.class);
                 startActivity(intent);
                 break;
             default:

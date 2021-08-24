@@ -1,6 +1,6 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
-import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Subtask;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Post;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
@@ -41,17 +41,16 @@ public class DataHelper {
 
         ArrayList<Task> data = new ArrayList<>();
    //     String[] notes = {"wake up early", "don't forget to bring money to eat breakfast later!"};
-        Notes notes = new Notes();
-        notes.getNotesArrayList().add("wake up early");
-        notes.getNotesArrayList().add("don't forget to bring money to eat breakfast later!");
+        Subtask subtask = new Subtask();
+        subtask.getSubtaskArrayList().add("wake up early");
+        subtask.getSubtaskArrayList().add("don't forget to bring money to eat breakfast later!");
 
         String date = "Thu, Aug 26 2021";
 
-        Notes temp = new Notes();
 
         data.add(new Task( "Jog for 5km starting 5am",
                 "Exercise",
-                notes,
+                subtask,
                 false, date,
                 "10:00"
 
@@ -59,7 +58,7 @@ public class DataHelper {
 
         data.add(new Task( "MC02 Beta Demo",
                 "MOBDEVE",
-                temp,
+                subtask,
                 false,
                 date,
                 "10:00"
@@ -68,7 +67,7 @@ public class DataHelper {
 
         data.add(new Task( "MC01 Proposal Submission",
                 "MOBDEVE",
-                temp,
+                subtask,
                 true,
                 date,
                 "10:00"

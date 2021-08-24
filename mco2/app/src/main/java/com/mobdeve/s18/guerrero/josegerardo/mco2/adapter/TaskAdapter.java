@@ -6,18 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobdeve.s18.guerrero.josegerardo.mco2.AddMenu;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.EditTaskActivity;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.R;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Subtask;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
 import java.text.ParseException;
@@ -84,45 +81,30 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         //holder.tv_date.setText(taskArrayList.get(position).toString());
 
 
-
-        holder.btn_check.setOnLongClickListener(v -> {
-            Toast.makeText(this.context, "Long Click Here", Toast.LENGTH_SHORT).show();
-            return false;
-        });
-
         holder.layout_edit.setOnLongClickListener(v -> {
-            Intent intent = new Intent(this.context, EditTaskActivity.class);
-
-            intent.putExtra("task", taskArrayList.get(position).getTask());
-            intent.putExtra("tag", taskArrayList.get(position).getTag());
-            intent.putExtra("date", taskArrayList.get(position).getDate());
-            intent.putExtra("time", taskArrayList.get(position).getTime());
-            this.context.startActivity(intent);
-            return false;
-        });
-
-        holder.btn_add_comment.setOnClickListener(v -> {
             Intent intent = new Intent(this.context, AddMenu.class);
             this.context.startActivity(intent);
-
+            return false;
         });
 
-        Notes notesArrayList = new Notes();
+        Subtask subtask = new Subtask();
         for(int i = 0; i < taskArrayList.size(); i++) {
-            if (position == i && position < taskArrayList.get(position).getNotes().size()) {
-                for (int j = 0; j < taskArrayList.get(position).getNotes().size(); j++) {
-                    notesArrayList.addNote(taskArrayList.get(position).getNotes().getNotesArrayList().get(j));
+            if (position == i && position < taskArrayList.get(position).getSubtask().size()) {
+                for (int j = 0; j < taskArrayList.get(position).getSubtask().size(); j++) {
+                    subtask.addSubtask(taskArrayList.get(position).getSubtask().getSubtaskArrayList().get(j));
                 }
             }
         }
 
 
+        //test subtask
+        subtask.addSubtask("test subtask");
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.context);
-        holder.rv_noteslist.setLayoutManager(linearLayoutManager);
+        holder.rv_subtasklist.setLayoutManager(linearLayoutManager);
 
-        NotesAdapter notesAdapter = new NotesAdapter(notesArrayList, holder.rv_noteslist.getContext());
-        holder.rv_noteslist.setAdapter(notesAdapter);
+        SubtaskAdapter subtaskAdapter = new SubtaskAdapter(subtask, holder.rv_subtasklist.getContext());
+        holder.rv_subtasklist.setAdapter(subtaskAdapter);
     }
 
 
@@ -135,12 +117,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         LinearLayout layout_edit;
         TextView tv_tag, tv_task, tv_date, tv_time, tv_day;
-        RecyclerView rv_noteslist;
-        ImageButton btn_add_comment;
+        RecyclerView rv_subtasklist;
         Button btn_check;
         public TaskViewHolder(View itemView) {
             super(itemView);
-            btn_add_comment = itemView.findViewById(R.id.btn_add_comment);
             btn_check = itemView.findViewById(R.id.btn_check);
             layout_edit = itemView.findViewById(R.id.layout_edit);
             tv_tag = itemView.findViewById(R.id.tv_tag);
@@ -148,7 +128,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             tv_day = itemView.findViewById(R.id.tv_day);
             tv_date = itemView.findViewById(R.id.tv_date);
             tv_time = itemView.findViewById(R.id.tv_time);
-            rv_noteslist = itemView.findViewById(R.id.rv_noteslist);
+            rv_subtasklist = itemView.findViewById(R.id.rv_subtasklist);
         }
     }
 }

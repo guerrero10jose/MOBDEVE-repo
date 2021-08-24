@@ -20,7 +20,6 @@
         <activity android:name=".IndivNotes"/>
         <activity android:name=".AddTaskActivity"/>
         <activity android:name=".EditTaskActivity"/>
-        <activity android:name=".SubtaskActivity"/>
         <activity android:name=".EditSubtaskActivity"/>
         <activity android:name=".AddMenu"/>
         <activity android:name=".AddDoodleActivity"/>

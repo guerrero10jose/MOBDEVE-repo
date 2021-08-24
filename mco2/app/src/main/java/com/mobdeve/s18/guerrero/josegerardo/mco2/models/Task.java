@@ -3,13 +3,13 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2.models;
 public class Task {
     private String task, tag, time;
     private String date;
-    private Notes notes;
+    private Subtask subtask;
     private boolean checked;
 
-    public Task(String task, String tag, Notes notes, boolean checked, String date, String time) {
+    public Task(String task, String tag, Subtask subtask, boolean checked, String date, String time) {
         this.task = task;
         this.tag = tag;
-        this.notes = notes;
+        this.subtask = subtask;
         this.checked = checked;
         this.date = date;
         this.time = time;
@@ -39,12 +39,12 @@ public class Task {
         this.date = date;
     }
 
-    public Notes getNotes() {
-        return notes;
+    public Subtask getSubtask() {
+        return subtask;
     }
 
-    public void setNotes(Notes notes) {
-        this.notes = notes;
+    public void setSubtask(Subtask subtask) {
+        this.subtask = subtask;
     }
 
     public boolean isChecked() {
