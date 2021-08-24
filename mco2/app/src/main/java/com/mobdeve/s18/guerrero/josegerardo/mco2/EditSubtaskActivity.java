@@ -46,9 +46,6 @@ public class EditSubtaskActivity extends AppCompatActivity implements DatePicker
         //update this
         binding.btnSave.setOnClickListener(v -> {
 
-
-
-
             // to db
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("tasks");
