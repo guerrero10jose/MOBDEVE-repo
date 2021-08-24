@@ -1,14 +1,21 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mobdeve.s18.guerrero.josegerardo.mco2.AddMenu;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.EditTaskActivity;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.R;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
@@ -22,7 +29,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     private ArrayList<Task> taskArrayList;
     private Context context;
-
 
     public TaskAdapter(Context context, ArrayList<Task> taskArrayList) {
         this.taskArrayList = taskArrayList;
@@ -77,6 +83,30 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.tv_time.setText(taskArrayList.get(position).getTime());
         //holder.tv_date.setText(taskArrayList.get(position).toString());
 
+
+
+        holder.btn_check.setOnLongClickListener(v -> {
+            Toast.makeText(this.context, "Long Click Here", Toast.LENGTH_SHORT).show();
+            return false;
+        });
+
+        holder.layout_edit.setOnLongClickListener(v -> {
+            Intent intent = new Intent(this.context, EditTaskActivity.class);
+
+            intent.putExtra("task", taskArrayList.get(position).getTask());
+            intent.putExtra("tag", taskArrayList.get(position).getTag());
+            intent.putExtra("date", taskArrayList.get(position).getDate());
+            intent.putExtra("time", taskArrayList.get(position).getTime());
+            this.context.startActivity(intent);
+            return false;
+        });
+
+        holder.btn_add_comment.setOnClickListener(v -> {
+            Intent intent = new Intent(this.context, AddMenu.class);
+            this.context.startActivity(intent);
+
+        });
+
         Notes notesArrayList = new Notes();
         for(int i = 0; i < taskArrayList.size(); i++) {
             if (position == i && position < taskArrayList.get(position).getNotes().size()) {
@@ -86,12 +116,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             }
         }
 
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.context);
         holder.rv_noteslist.setLayoutManager(linearLayoutManager);
 
         NotesAdapter notesAdapter = new NotesAdapter(notesArrayList, holder.rv_noteslist.getContext());
         holder.rv_noteslist.setAdapter(notesAdapter);
     }
+
 
     @Override
     public int getItemCount() {
@@ -100,10 +133,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     protected class TaskViewHolder extends RecyclerView.ViewHolder{
 
+        LinearLayout layout_edit;
         TextView tv_tag, tv_task, tv_date, tv_time, tv_day;
         RecyclerView rv_noteslist;
+        ImageButton btn_add_comment;
+        Button btn_check;
         public TaskViewHolder(View itemView) {
             super(itemView);
+            btn_add_comment = itemView.findViewById(R.id.btn_add_comment);
+            btn_check = itemView.findViewById(R.id.btn_check);
+            layout_edit = itemView.findViewById(R.id.layout_edit);
             tv_tag = itemView.findViewById(R.id.tv_tag);
             tv_task = itemView.findViewById(R.id.tv_task);
             tv_day = itemView.findViewById(R.id.tv_day);

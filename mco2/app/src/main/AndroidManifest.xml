@@ -13,11 +13,17 @@
         <activity android:name=".Friends" />
         <activity android:name=".CreatePost" />
         <activity android:name=".Menu" />
-        <activity android:name=".MainView"></activity>
-        <activity android:name=".Messages"></activity>
-        <activity android:name=".Login"></activity>
-        <activity android:name=".Register"></activity>
-        <activity android:name=".AddTaskActivity"></activity>
+        <activity android:name=".MainView"/>
+        <activity android:name=".Messages"/>
+        <activity android:name=".Login"/>
+        <activity android:name=".Register"/>
+        <activity android:name=".AddTaskActivity"/>
+        <activity android:name=".EditTaskActivity"/>
+        <activity android:name=".SubtaskActivity"/>
+        <activity android:name=".EditSubtaskActivity"/>
+        <activity android:name=".AddMenu"/>
+        <activity android:name=".AddDoodleActivity"/>
+        <activity android:name=".AddNoteActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

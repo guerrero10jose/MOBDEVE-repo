@@ -6,7 +6,6 @@ import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
 public class DataHelper {
     public ArrayList<Post> initializeData() {
@@ -46,14 +45,14 @@ public class DataHelper {
         notes.getNotesArrayList().add("wake up early");
         notes.getNotesArrayList().add("don't forget to bring money to eat breakfast later!");
 
-        Date date = new Date();
+        String date = "Thu, Aug 26 2021";
 
         Notes temp = new Notes();
 
         data.add(new Task( "Jog for 5km starting 5am",
                 "Exercise",
                 notes,
-                false, date.toString(),
+                false, date,
                 "10:00"
 
         ));
@@ -62,7 +61,7 @@ public class DataHelper {
                 "MOBDEVE",
                 temp,
                 false,
-                date.toString(),
+                date,
                 "10:00"
 
         ));
@@ -71,7 +70,7 @@ public class DataHelper {
                 "MOBDEVE",
                 temp,
                 true,
-                date.toString(),
+                date,
                 "10:00"
 
         ));

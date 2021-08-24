@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="15dp"
     android:layout_marginTop="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
     app:cardBackgroundColor="@android:color/transparent"
     app:cardElevation="0dp">
 
@@ -40,63 +40,32 @@
                 android:id="@+id/layout_edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_weight="8"
                 android:weightSum="8"
                 android:orientation="horizontal">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_task"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
                     android:layout_weight="6"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_tag"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="10dp"
-                        android:gravity="center_vertical"
-                        android:paddingTop="5dp"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:text="Exercise"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_task"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="10dp"
-                        android:gravity="center_vertical"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:text="Jog for 5km starting 5 am"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-
-                </LinearLayout>
+                    android:gravity="center_vertical"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Jog for 5km starting 5 am"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:gravity="center"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_day"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:gravity="center"
-                        android:text="Mon"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_date"
@@ -125,26 +94,7 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btn_add_comment"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:adjustViewBounds="true"
-                android:layout_gravity="center"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="6dp"
-                android:backgroundTint="@color/black"
-                android:background="@drawable/ic_add_note" />
-
         </LinearLayout>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_noteslist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tv_filter"
-            />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

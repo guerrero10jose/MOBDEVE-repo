@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.ActivityAddTaskBinding;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.databinding.ActivityEditTaskBinding;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Notes;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
@@ -20,9 +20,8 @@ import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class AddTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
-
-    private ActivityAddTaskBinding binding;
+public class EditTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+    private ActivityEditTaskBinding binding;
 
     private FirebaseDatabase rootNode;
     private DatabaseReference reference;
@@ -31,7 +30,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityAddTaskBinding.inflate(getLayoutInflater());
+        binding = ActivityEditTaskBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.btnDate.setOnClickListener(v -> {
@@ -44,6 +43,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
             timePicker.show(getSupportFragmentManager(), "time picker");
         });
 
+        //update this
         binding.btnSave.setOnClickListener(v -> {
 
             // to db
@@ -52,6 +52,8 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
 
             Notes notes = new Notes();
 
+
+            //change this
             Task task = new Task(binding.etTask.getText().toString(),
                     binding.etTag.getText().toString(),
                     notes, false,
@@ -63,6 +65,21 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
 
             reference.child(sessionManage.getSession()).child(binding.etTask.getText().toString()).setValue(task);
 
+            Intent intent = new Intent(getApplicationContext(), MainView.class);
+            intent.putExtra("task", binding.etTask.getText().toString());
+            intent.putExtra("tag", binding.etTag.getText().toString());
+            intent.putExtra("date", binding.tvDate.getText().toString());
+            intent.putExtra("time", binding.tvTime.getText().toString());
+            startActivity(intent);
+            finish();
+        });
+
+        binding.btnSubtask.setOnClickListener(v -> {
+           Intent intent = new Intent(getApplicationContext(), SubtaskActivity.class);
+           startActivity(intent);
+        });
+
+        binding.btnDelete.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), MainView.class);
             startActivity(intent);
             finish();
