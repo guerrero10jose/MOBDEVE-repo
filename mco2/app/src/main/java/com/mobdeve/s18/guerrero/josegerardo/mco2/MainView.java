@@ -86,6 +86,10 @@ public class MainView extends AppCompatActivity {
         Intent intent;
 
         switch ((item.getItemId())) {
+            case R.id.posts:
+                intent = new Intent(getApplicationContext(), IndivPost.class);
+                startActivity(intent);
+                break;
             case R.id.messages:
                 intent = new Intent(getApplicationContext(), Messages.class);
                 startActivity(intent);

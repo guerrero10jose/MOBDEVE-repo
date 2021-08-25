@@ -18,9 +18,11 @@
         <activity android:name=".Login"/>
         <activity android:name=".Register"/>
         <activity android:name=".IndivNotes"/>
+        <activity android:name=".IndivPost"/>
         <activity android:name=".AddTaskActivity"/>
         <activity android:name=".EditTaskActivity"/>
         <activity android:name=".EditSubtaskActivity"/>
+        <activity android:name=".MyPostSingle"/>
         <activity android:name=".AddMenu"/>
         <activity android:name=".AddDoodleActivity"/>
         <activity android:name=".AddNoteActivity"/>

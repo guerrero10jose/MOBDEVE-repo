@@ -102,7 +102,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/pinkred"
-            android:text="EDIT"
+            android:text="SHARE"
             android:textColor="@color/white"
             app:layout_constraintRight_toLeftOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/input_cap" />
