@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
@@ -52,7 +53,8 @@ public class CreatePost extends AppCompatActivity {
     private Button btn_save, btn_share;
     private ImageView upload;
     private ActivityResultLauncher<Intent> results;
-    private Uri ImageUri, pass_uri;
+    private Uri ImageUri;
+    private static String PassUri;
     private StorageReference storageReference;
     private EditText in_cap;
 
@@ -83,21 +85,9 @@ public class CreatePost extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(ImageUri != null) {
-                    Toast.makeText(getApplicationContext(), ImageUri.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), PassUri, Toast.LENGTH_LONG).show();
                     //uploadimage();
                     uploadtoFirebase(ImageUri);
-
-                    String caption = in_cap.getText().toString();
-                    SessionManage sessionManage = new SessionManage(getApplicationContext());
-
-                    rootNode = FirebaseDatabase.getInstance();
-                    reference = rootNode.getReference("posts");
-
-                    Post post = new Post(ImageUri.toString(), 0, 0, caption, selectedText, false,
-                            sessionManage.getSession(), 0);
-
-                    String id = reference.push().getKey();
-                    reference.child(id).setValue(post);
                 }
             }
         });
@@ -176,6 +166,7 @@ public class CreatePost extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
 
+                        PassUri = uri.toString();
                         Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -196,10 +187,26 @@ public class CreatePost extends AppCompatActivity {
         storageReference.putFile(ImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+                StorageMetadata pic = taskSnapshot.getMetadata();
+                Task<Uri> downloadUrl = storageReference.getDownloadUrl();
+                downloadUrl.addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
 
+                        String caption = in_cap.getText().toString();
+                        SessionManage sessionManage = new SessionManage(getApplicationContext());
+
+                        rootNode = FirebaseDatabase.getInstance();
+                        reference = rootNode.getReference("posts");
+
+                        Post post = new Post(uri.toString(), 0, 0, caption, selectedText, false,
+                                sessionManage.getSession(), 0);
+
+                        String id = reference.push().getKey();
+                        reference.child(id).setValue(post);
+
+                        //Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

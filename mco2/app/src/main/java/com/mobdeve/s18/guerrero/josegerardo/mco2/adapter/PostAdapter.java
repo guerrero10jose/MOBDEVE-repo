@@ -48,7 +48,7 @@ public class PostAdapter
         holder.task.setText(postArrayList.get(position).getTask());
         holder.btn_fave.setChecked(postArrayList.get(position).isLiked());
 
-        //Picasso.get().load(postArrayList.get(position).getModelname()).into(holder.cap_image);
+        Picasso.get().load(postArrayList.get(position).getModelname()).into(holder.cap_image);
     }
 
     @Override
