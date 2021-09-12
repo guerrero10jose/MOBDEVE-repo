@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobdeve.s18.guerrero.josegerardo.mco2.R;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Post;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -39,13 +40,15 @@ public class PostAdapter
     public void onBindViewHolder(PostAdapter.PostViewHolder holder, int position) {
 
         holder.prof_img.setImageResource(postArrayList.get(position).getUserImageId());
-        holder.cap_image.setImageResource(postArrayList.get(position).getImageId());
+        //holder.cap_image.setImageResource(postArrayList.get(position).getImageId());
         holder.caption.setText(postArrayList.get(position).getCaption());
         holder.prof_name.setText(postArrayList.get(position).getUsername());
         holder.likes.setText(Integer.toString(postArrayList.get(position).getLikes()).concat(" LIKES"));
         holder.comments.setText(Integer.toString(postArrayList.get(position).getComments()).concat(" COMMENTS"));
         holder.task.setText(postArrayList.get(position).getTask());
         holder.btn_fave.setChecked(postArrayList.get(position).isLiked());
+
+        //Picasso.get().load(postArrayList.get(position).getModelname()).into(holder.cap_image);
     }
 
     @Override

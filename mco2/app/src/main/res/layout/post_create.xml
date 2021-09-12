@@ -28,8 +28,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="Create Post"
-            android:textSize="40dp"
             android:textColor="@color/pinkred"
+            android:textSize="40dp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,8 +41,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="Task"
-            android:textSize="20dp"
             android:textColor="@color/pinkred"
+            android:textSize="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/create_post" />
 
@@ -50,12 +50,10 @@
             android:id="@+id/task_dropdown"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_margin="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/task_title"
-            android:background="@drawable/custom_input"
-            />
+            app:layout_constraintTop_toBottomOf="@id/task_title" />
 
         <TextView
             android:id="@+id/cap_title"
@@ -64,8 +62,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="Caption"
-            android:textSize="20dp"
             android:textColor="@color/pinkred"
+            android:textSize="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/upload" />
 
@@ -95,12 +93,12 @@
             app:layout_constraintGuide_percent="0.65" />
 
         <Button
-            android:id="@+id/btn_post"
+            android:id="@+id/btn_share"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="30dp"
             android:backgroundTint="@color/pinkred"
             android:text="SHARE"
             android:textColor="@color/white"
@@ -108,11 +106,11 @@
             app:layout_constraintTop_toBottomOf="@+id/input_cap" />
 
         <Button
-            android:id="@+id/btn_share"
+            android:id="@+id/btn_save"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/pinkred"

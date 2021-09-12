@@ -2,7 +2,7 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2.models;
 
 public class Post {
     private int imageId, userImageId, likes, comments;
-    private String caption, task, username;
+    private String caption, task, username, modelname;
     private boolean liked;
 
     public Post(int imageId, int likes, int comments, String caption, String task, boolean liked, String username, int userImageId) {
@@ -15,6 +15,19 @@ public class Post {
         this.username = username;
         this.userImageId = userImageId;
     }
+
+    public Post(String imageId, int likes, int comments, String caption, String task, boolean liked, String username, int userImageId) {
+        this.modelname = imageId;
+        this.likes = likes;
+        this.comments = comments;
+        this.caption = caption;
+        this.task = task;
+        this.liked = liked;
+        this.username = username;
+        this.userImageId = userImageId;
+    }
+
+    public String getModelname() { return modelname;}
 
     public int getImageId() {
         return imageId;
