@@ -14,13 +14,15 @@ import com.mobdeve.s18.guerrero.josegerardo.mco2.EditSubtaskActivity;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.R;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Subtask;
 
+import java.util.ArrayList;
+
 public class SubtaskAdapter extends RecyclerView.Adapter<SubtaskAdapter.SubtaskViewHolder> {
 
-    private Subtask subtask;
+    private ArrayList<Subtask> subtasks;
     private Context context;
 
-    public SubtaskAdapter(Subtask subtask, Context context) {
-        this.subtask = subtask;
+    public SubtaskAdapter(ArrayList<Subtask> subtasks, Context context) {
+        this.subtasks = subtasks;
         this.context = context;
     }
 
@@ -40,13 +42,13 @@ public class SubtaskAdapter extends RecyclerView.Adapter<SubtaskAdapter.SubtaskV
             return false;
         });
 
-        String subtask = this.subtask.getSubtaskArrayList().get(position);
+        String subtask = this.subtasks.get(position).getSubtask();
         holder.tv_subtask.setText(subtask);
     }
 
     @Override
     public int getItemCount() {
-        return subtask.size();
+        return subtasks.size();
     }
 
     protected class SubtaskViewHolder extends RecyclerView.ViewHolder {

@@ -1,35 +1,29 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2.models;
 
-import java.util.ArrayList;
-
 public class Subtask {
 
-    private ArrayList<String> subtaskArrayList;
+    private String Subtask;
+    private boolean checked;
 
-
-    public Subtask() {
-        subtaskArrayList = new ArrayList<>();
+    public Subtask(String subtask, boolean checked) {
+        Subtask = subtask;
+        this.checked = checked;
     }
 
-    public Subtask(ArrayList<String> subtaskArrayList) {
-        this.subtaskArrayList = subtaskArrayList;
+    public String getSubtask() {
+        return Subtask;
     }
 
-
-    public ArrayList<String> getSubtaskArrayList() {
-        return subtaskArrayList;
+    public void setSubtask(String subtask) {
+        Subtask = subtask;
+        checked = false;
     }
 
-    public void addSubtask(String subtask) {
-        subtaskArrayList.add(subtask);
+    public boolean isChecked() {
+        return checked;
     }
 
-
-    public void setSubtaskArrayList(ArrayList<String> subtaskArrayList) {
-        this.subtaskArrayList = subtaskArrayList;
-    }
-
-    public int size() {
-        return subtaskArrayList.size();
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

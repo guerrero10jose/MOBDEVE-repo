@@ -20,6 +20,7 @@
         <activity android:name=".IndivNotes"/>
         <activity android:name=".IndivPost"/>
         <activity android:name=".AddTaskActivity"/>
+        <activity android:name=".AddSubtaskActivity"/>
         <activity android:name=".EditTaskActivity"/>
         <activity android:name=".EditSubtaskActivity"/>
         <activity android:name=".MyPostSingle"/>

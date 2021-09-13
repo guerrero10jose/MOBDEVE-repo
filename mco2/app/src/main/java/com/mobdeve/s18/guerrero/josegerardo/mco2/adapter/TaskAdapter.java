@@ -2,6 +2,7 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,27 +84,24 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.layout_edit.setOnLongClickListener(v -> {
             Intent intent = new Intent(this.context, AddMenu.class);
+            intent.putExtra("Task", holder.tv_task.getText().toString());
             this.context.startActivity(intent);
             return false;
         });
 
-        Subtask subtask = new Subtask();
+        ArrayList<Subtask> subtasks = new ArrayList<>();
         for(int i = 0; i < taskArrayList.size(); i++) {
-            if (position == i && position < taskArrayList.get(position).getSubtask().size()) {
-                for (int j = 0; j < taskArrayList.get(position).getSubtask().size(); j++) {
-                    subtask.addSubtask(taskArrayList.get(position).getSubtask().getSubtaskArrayList().get(j));
+            if (position == i && position < taskArrayList.get(position).getSubtasksArrayList().size()) {
+                for (int j = 0; j < taskArrayList.get(position).getSubtasksArrayList().size(); j++) {
+                    subtasks.add(taskArrayList.get(position).getSubtasksArrayList().get(j));
                 }
             }
         }
 
-
-        //test subtask
-        subtask.addSubtask("test subtask");
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.context);
         holder.rv_subtasklist.setLayoutManager(linearLayoutManager);
 
-        SubtaskAdapter subtaskAdapter = new SubtaskAdapter(subtask, holder.rv_subtasklist.getContext());
+        SubtaskAdapter subtaskAdapter = new SubtaskAdapter(subtasks, holder.rv_subtasklist.getContext());
         holder.rv_subtasklist.setAdapter(subtaskAdapter);
     }
 

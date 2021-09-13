@@ -21,6 +21,7 @@ import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Subtask;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TaskFragment extends Fragment {
 
@@ -62,19 +63,32 @@ public class TaskFragment extends Fragment {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     //Task task = snapshot.getValue(Task.class);
 
-                    Subtask subtask = new Subtask();
+                    ArrayList<Subtask> subtasks = new ArrayList<>();
+
+                    if(snapshot.child("subtasks").exists())
+                    {
+                        Iterator<DataSnapshot> items = snapshot.child("subtask").getChildren().iterator();;
+                        while (items.hasNext()) {
+                            DataSnapshot item = items.next();
+                            String tempSubtask = item.child("subtask").getValue().toString();
+                            Boolean tempChecked = Boolean.parseBoolean(item.child("checked").getValue().toString());
+                            Subtask temp = new Subtask(tempSubtask, tempChecked);
+                            subtasks.add(temp);
+
+                        }
+                    }
+                    else {
+                        Log.v("here", "no subtask in this task");
+                    }
 
                     Task task = new Task(snapshot.child("task").getValue().toString(),
                             snapshot.child("tag").getValue().toString(),
-                            subtask, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
+                            subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
                             snapshot.child("date").getValue().toString(),
                             snapshot.child("time").getValue().toString()
                     );
 
                     taskArrayList.add(task);
-
-                    //Log.v("here", Integer.toString(taskArrayList.size()));
-
                 }
                 taskAdapter.notifyDataSetChanged();
             }
@@ -110,18 +124,18 @@ public class TaskFragment extends Fragment {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     //Task task = snapshot.getValue(Task.class);
 
-                    Subtask subtask = new Subtask();
+                    ArrayList<Subtask> subtasks = new ArrayList<>();
 
                     Task task = new Task(snapshot.child("task").getValue().toString(),
                             snapshot.child("tag").getValue().toString(),
-                            subtask, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
+                            subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
                             snapshot.child("date").getValue().toString(),
                             snapshot.child("time").getValue().toString()
                             );
 
                     taskArrayList.add(task);
 
-                    Log.v("here", Integer.toString(taskArrayList.size()));
+                    //Log.v("here", Integer.toString(taskArrayList.size()));
 
                 }
                 taskAdapter.notifyDataSetChanged();

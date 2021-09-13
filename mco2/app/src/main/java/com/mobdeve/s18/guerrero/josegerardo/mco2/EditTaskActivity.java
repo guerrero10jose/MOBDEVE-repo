@@ -18,6 +18,7 @@ import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Subtask;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class EditTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -50,13 +51,13 @@ public class EditTaskActivity extends AppCompatActivity implements DatePickerDia
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("tasks");
 
-            Subtask subtask = new Subtask();
+            ArrayList<Subtask> subtasks = new ArrayList<>();
 
 
             //change this
             Task task = new Task(binding.etTask.getText().toString(),
                     binding.etTag.getText().toString(),
-                    subtask, false,
+                    subtasks, false,
                     binding.tvDate.getText().toString(),
                     binding.tvTime.getText().toString());
 

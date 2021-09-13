@@ -9,26 +9,31 @@ import androidx.cardview.widget.CardView;
 
 public class AddMenu extends AppCompatActivity implements View.OnClickListener {
 
-    private CardView text_note_cv, doodle_cv, edit_cv;
+    private CardView text_note_cv, doodle_cv, edit_cv, add_subtask_cv;
 
+    private String Task;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_menu);
 
+        Intent oldIntent = getIntent();
+        Task = oldIntent.getStringExtra("Task");
+
         text_note_cv = findViewById(R.id.text_note_cv);
         doodle_cv = findViewById(R.id.doodle_cv);
         edit_cv = findViewById(R.id.edit_cv);
+        add_subtask_cv = findViewById(R.id.add_subtask_cv);
 
         text_note_cv.setOnClickListener(this);
         doodle_cv.setOnClickListener(this);
         edit_cv.setOnClickListener(this);
+        add_subtask_cv.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         Intent intent;
-
         switch(v.getId()) {
             case R.id.text_note_cv:
                 intent = new Intent(getApplicationContext(), IndivNotes.class);
@@ -40,6 +45,11 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.edit_cv:
                 intent = new Intent(getApplicationContext(), EditTaskActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.add_subtask_cv:
+                intent = new Intent(getApplicationContext(), AddSubtaskActivity.class);
+                intent.putExtra("Task", Task);
                 startActivity(intent);
                 break;
             default:

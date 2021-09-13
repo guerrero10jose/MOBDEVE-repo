@@ -1,15 +1,17 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2.models;
 
+import java.util.ArrayList;
+
 public class Task {
     private String task, tag, time;
     private String date;
-    private Subtask subtask;
+    private ArrayList<Subtask> subtasks;
     private boolean checked;
 
-    public Task(String task, String tag, Subtask subtask, boolean checked, String date, String time) {
+    public Task(String task, String tag, ArrayList<Subtask> subtasks, boolean checked, String date, String time) {
         this.task = task;
         this.tag = tag;
-        this.subtask = subtask;
+        this.subtasks = subtasks;
         this.checked = checked;
         this.date = date;
         this.time = time;
@@ -39,12 +41,12 @@ public class Task {
         this.date = date;
     }
 
-    public Subtask getSubtask() {
-        return subtask;
+    public ArrayList<Subtask> getSubtasksArrayList() {
+        return subtasks;
     }
 
-    public void setSubtask(Subtask subtask) {
-        this.subtask = subtask;
+    public void setSubtasks(ArrayList<Subtask> subtasks) {
+        this.subtasks = subtasks;
     }
 
     public boolean isChecked() {
