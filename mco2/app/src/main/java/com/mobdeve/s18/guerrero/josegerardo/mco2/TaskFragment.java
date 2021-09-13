@@ -67,7 +67,7 @@ public class TaskFragment extends Fragment {
 
                     if(snapshot.child("subtasks").exists())
                     {
-                        Iterator<DataSnapshot> items = snapshot.child("subtask").getChildren().iterator();;
+                        Iterator<DataSnapshot> items = snapshot.child("subtasks").getChildren().iterator();;
                         while (items.hasNext()) {
                             DataSnapshot item = items.next();
                             String tempSubtask = item.child("subtask").getValue().toString();

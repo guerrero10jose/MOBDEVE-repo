@@ -19,10 +19,12 @@ import java.util.ArrayList;
 public class SubtaskAdapter extends RecyclerView.Adapter<SubtaskAdapter.SubtaskViewHolder> {
 
     private ArrayList<Subtask> subtasks;
+    private String task;
     private Context context;
 
-    public SubtaskAdapter(ArrayList<Subtask> subtasks, Context context) {
+    public SubtaskAdapter(ArrayList<Subtask> subtasks, String task, Context context) {
         this.subtasks = subtasks;
+        this.task = task;
         this.context = context;
     }
 
@@ -38,6 +40,8 @@ public class SubtaskAdapter extends RecyclerView.Adapter<SubtaskAdapter.SubtaskV
 
         holder.layout_edit.setOnLongClickListener(v -> {
             Intent intent = new Intent(this.context, EditSubtaskActivity.class);
+            intent.putExtra("Task", task);
+            intent.putExtra("Subtask", holder.tv_subtask.getText().toString());
             this.context.startActivity(intent);
             return false;
         });

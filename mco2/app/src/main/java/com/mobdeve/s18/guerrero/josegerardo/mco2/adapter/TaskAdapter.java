@@ -2,7 +2,6 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +100,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.context);
         holder.rv_subtasklist.setLayoutManager(linearLayoutManager);
 
-        SubtaskAdapter subtaskAdapter = new SubtaskAdapter(subtasks, holder.rv_subtasklist.getContext());
+        SubtaskAdapter subtaskAdapter = new SubtaskAdapter(subtasks, taskArrayList.get(position).getTask(), holder.rv_subtasklist.getContext());
         holder.rv_subtasklist.setAdapter(subtaskAdapter);
     }
 
