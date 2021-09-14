@@ -85,9 +85,10 @@ public class CreatePost extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(ImageUri != null) {
-                    Toast.makeText(getApplicationContext(), PassUri, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), PassUri, Toast.LENGTH_LONG).show();
                     //uploadimage();
                     uploadtoFirebase(ImageUri);
+                    finish();
                 }
             }
         });
@@ -175,7 +176,7 @@ public class CreatePost extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(Exception e) {
-                Toast.makeText(getApplicationContext(), "fuck!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -200,10 +201,11 @@ public class CreatePost extends AppCompatActivity {
                         rootNode = FirebaseDatabase.getInstance();
                         reference = rootNode.getReference("posts");
 
-                        Post post = new Post(uri.toString(), 0, 0, caption, selectedText, false,
-                                sessionManage.getSession(), 0);
-
                         String id = reference.push().getKey();
+
+                        Post post = new Post(uri.toString(), 0, 0, caption, selectedText, false,
+                                sessionManage.getSession(), 0, id);
+
                         reference.child(id).setValue(post);
 
                         //Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_SHORT).show();

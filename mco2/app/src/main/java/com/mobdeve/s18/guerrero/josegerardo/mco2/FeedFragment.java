@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,6 +50,44 @@ public class FeedFragment extends Fragment {
 
         //populateList();
 
+        getposts();
+
+        setOnClickListener();
+        postAdapter = new PostAdapter(this.getContext(), postArrayList, listener);
+
+        recyclerView.setAdapter(postAdapter);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    }
+
+    private void setOnClickListener() {
+        listener = new PostAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                String Likes = String.valueOf(postArrayList.get(position).getLikes()) + " LIKES";
+
+                Intent intent = new Intent(getContext(), PostSingle.class);
+
+                intent.putExtra("username", postArrayList.get(position).getUsername());
+                intent.putExtra("task", postArrayList.get(position).getTask());
+                intent.putExtra("caption", postArrayList.get(position).getCaption());
+                intent.putExtra("likes", Likes);
+                intent.putExtra("user_pic", R.drawable.nopic);
+                intent.putExtra("cap_pic", postArrayList.get(position).getModelname());
+                intent.putExtra("postid", postArrayList.get(position).getPostid());
+                startActivity(intent);
+            }
+        };
+    }
+
+    private void getposts() {
         // firebase
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("posts");
@@ -68,10 +107,13 @@ public class FeedFragment extends Fragment {
                             snapshot.child("task").getValue().toString(),
                             Boolean.parseBoolean(snapshot.child("liked").getValue().toString()),
                             snapshot.child("username").getValue().toString(),
-                            R.drawable.nopic);
+                            R.drawable.nopic,
+                            snapshot.child("postid").getValue().toString());
 
                     postArrayList.add(post);
+
                 }
+
                 postAdapter.notifyDataSetChanged();
             }
 
@@ -80,33 +122,6 @@ public class FeedFragment extends Fragment {
 
             }
         });
-
-
-        setOnClickListener();
-        postAdapter = new PostAdapter(this.getContext(), postArrayList, listener);
-
-        recyclerView.setAdapter(postAdapter);
-
-        return view;
-    }
-
-    private void setOnClickListener() {
-        listener = new PostAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                String Likes = String.valueOf(postArrayList.get(position).getLikes()) + " LIKES";
-
-                Intent intent = new Intent(getContext(), PostSingle.class);
-
-                intent.putExtra("username", postArrayList.get(position).getUsername());
-                intent.putExtra("task", postArrayList.get(position).getTask());
-                intent.putExtra("caption", postArrayList.get(position).getCaption());
-                intent.putExtra("likes", Likes);
-                intent.putExtra("user_pic", postArrayList.get(position).getModelname());
-                intent.putExtra("cap_pic", postArrayList.get(position).getImageId());
-                startActivity(intent);
-            }
-        };
     }
 
     private void populateList() {
