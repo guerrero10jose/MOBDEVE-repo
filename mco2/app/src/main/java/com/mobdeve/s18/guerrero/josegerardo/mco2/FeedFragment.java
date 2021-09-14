@@ -82,6 +82,7 @@ public class FeedFragment extends Fragment {
                 intent.putExtra("user_pic", R.drawable.nopic);
                 intent.putExtra("cap_pic", postArrayList.get(position).getModelname());
                 intent.putExtra("postid", postArrayList.get(position).getPostid());
+                intent.putExtra("com_count", postArrayList.get(position).getComments());
                 startActivity(intent);
             }
         };

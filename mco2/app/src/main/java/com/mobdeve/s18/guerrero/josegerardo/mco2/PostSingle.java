@@ -32,7 +32,8 @@ public class PostSingle extends AppCompatActivity {
     private CommentAdapter commentAdapter;
     private RecyclerView recyclerView;
     private FirebaseDatabase rootNode;
-    private DatabaseReference reference, reference2;
+    private DatabaseReference reference;
+    private int com_count;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,8 @@ public class PostSingle extends AppCompatActivity {
             likes.setText(extras.getString("likes"));
             caption.setText(extras.getString("caption"));
 
+            com_count = extras.getInt("com_count");
+
             Picasso.get().load(extras.getString("cap_pic")).into(cap_pic);
         }
 
@@ -87,19 +90,28 @@ public class PostSingle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String key = extras.getString("postid");
+                if(comment.getText().toString().length() < 1) {
+                    Toast.makeText(PostSingle.this, "Please enter a comment", Toast.LENGTH_SHORT).show();
+                } else {
+                    String key = extras.getString("postid");
 
-                // firebase
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("posts");
+                    // firebase
+                    rootNode = FirebaseDatabase.getInstance();
+                    reference = rootNode.getReference("posts");
 
-                SessionManage sessionManage = new SessionManage(getApplicationContext());
+                    SessionManage sessionManage = new SessionManage(getApplicationContext());
 
-                Comment commentvar = new Comment(sessionManage.getSession(), comment.getText().toString());
+                    Comment commentvar = new Comment(sessionManage.getSession(), comment.getText().toString());
 
-                String id = reference.push().getKey();
+                    String id = reference.push().getKey();
 
-                reference.child(key).child("commentlist").child(id).setValue(commentvar);
+                    //int com_num = Integer.parseInt(extras.getString("comments")) + 1;
+
+                    reference.child(key).child("commentlist").child(id).setValue(commentvar);
+                    reference.child(key).child("comments").setValue(com_count + 1);
+
+                    com_count += 1;
+                }
             }
         });
     }
