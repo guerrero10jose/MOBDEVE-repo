@@ -1,7 +1,6 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,9 +75,6 @@ public class TaskFragment extends Fragment {
                             subtasks.add(temp);
 
                         }
-                    }
-                    else {
-                        Log.v("here", "no subtask in this task");
                     }
 
                     Task task = new Task(snapshot.child("task").getValue().toString(),
