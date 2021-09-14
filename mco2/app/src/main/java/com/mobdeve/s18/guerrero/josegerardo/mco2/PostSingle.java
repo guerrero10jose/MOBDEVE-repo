@@ -148,18 +148,6 @@ public class PostSingle extends AppCompatActivity {
                         commentAdapter.notifyDataSetChanged();
                     }
                 }
-                        /*
-                    if(snapshot.child("postid").equals(extras.getString("postid")) &&
-                        snapshot.child("commentlist").exists())  {
-
-                        Comment commentvar = new Comment(snapshot.child("commentlist").child("comment_name").getValue().toString(),
-                                snapshot.child("commentlist").child("comment").getValue().toString());
-
-                        commentArrayList.add(commentvar);
-                    }
-
-                    //commentAdapter.notifyDataSetChanged();
-                } */
             }
 
             @Override

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobdeve.s18.guerrero.josegerardo.mco2.R;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Post;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,8 +39,9 @@ public class UserPostAdapter
     @Override
     public void onBindViewHolder(UserPostAdapter.UserPostViewHolder holder, int position) {
 
-        holder.cap_img.setImageResource(postArrayList.get(position).getUserImageId());
+        //holder.cap_img.setImageResource(postArrayList.get(position).getUserImageId());
         holder.task.setText(postArrayList.get(position).getTask());
+        Picasso.get().load(postArrayList.get(position).getModelname()).resize(50, 50).centerCrop().into(holder.cap_img);
 
     }
 
