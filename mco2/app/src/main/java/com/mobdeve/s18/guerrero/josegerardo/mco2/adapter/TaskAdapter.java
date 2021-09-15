@@ -6,15 +6,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.AddMenu;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.R;
+import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Subtask;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Task;
 
@@ -61,6 +65,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.tv_tag.setText(taskArrayList.get(position).getTag());
         holder.tv_task.setText(taskArrayList.get(position).getTask());
+        holder.btn_check.setChecked(taskArrayList.get(position).isChecked());
 
         String shortDate = "";
         String day = "";
@@ -81,6 +86,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.tv_time.setText(taskArrayList.get(position).getTime());
         //holder.tv_date.setText(taskArrayList.get(position).toString());
 
+        holder.btn_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                // session
+                SessionManage sessionManage = new SessionManage(context);
+
+                // to db
+                FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
+                DatabaseReference reference = rootNode.getReference("tasks").child(sessionManage.getSession()).child(taskArrayList.get(position).getTaskid()).child("checked");
+
+                // change value in db
+                reference.setValue(isChecked);
+            }
+        });
 
         holder.layout_edit.setOnLongClickListener(v -> {
             Intent intent = new Intent(this.context, AddMenu.class);
@@ -123,7 +144,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         LinearLayout layout_edit;
         TextView tv_tag, tv_task, tv_date, tv_time, tv_day;
         RecyclerView rv_subtasklist;
-        Button btn_check;
+        ToggleButton btn_check;
         public TaskViewHolder(View itemView) {
             super(itemView);
             btn_check = itemView.findViewById(R.id.btn_check);
