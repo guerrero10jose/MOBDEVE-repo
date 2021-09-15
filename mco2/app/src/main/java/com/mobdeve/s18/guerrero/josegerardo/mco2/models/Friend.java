@@ -15,6 +15,10 @@ public class Friend {
         return name;
     }
 
+    public String getString() {
+        return name;
+    }
+
     private int userimageid;
     private String name;
 
