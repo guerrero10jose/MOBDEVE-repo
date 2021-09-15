@@ -55,7 +55,6 @@ public class TaskFragment extends Fragment {
         reference = rootNode.getReference("tasks").child(sessionManage.getSession());
         Query taskQuery = reference.orderByChild("task");
 
-        Log.v("here", "here here here");
         taskQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -76,19 +75,8 @@ public class TaskFragment extends Fragment {
                             Boolean tempChecked = Boolean.parseBoolean(item.child("checked").getValue().toString());
                             String tempSubtaskId = item.child("subtaskid").getValue().toString();
                             Subtask temp = new Subtask(tempSubtask, tempChecked, tempSubtaskId);
-
-
                             subtasks.add(temp);
-
-
                         }
-                    }
-
-                    for(int i = 0; i < subtasks.size(); i++)
-                    {
-                        Log.v("here", "subtask = " + subtasks.get(i).getSubtask());
-                        Log.v("here", "tempChecked = " + subtasks.get(i).isChecked());
-                        Log.v("here", "tempSubtaskId = " + subtasks.get(i).getSubtaskid());
                     }
 
                     Task task = new Task(snapshot.child("task").getValue().toString(),

@@ -2,7 +2,6 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,10 +117,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         ArrayList<Subtask> subtasks = new ArrayList<>();
         for(int i = 0; i < taskArrayList.size(); i++) {
             if (position == i && position <= taskArrayList.get(position).getSubtasksArrayList().size()) {
-                Log.v("here", "inside if statement loop");
                 for (int j = 0; j < taskArrayList.get(position).getSubtasksArrayList().size(); j++) {
                     subtasks.add(taskArrayList.get(position).getSubtasksArrayList().get(j));
-                    Log.v("here", taskArrayList.get(position).getSubtasksArrayList().get(j).getSubtask());
                 }
             }
         }
