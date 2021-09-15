@@ -1,7 +1,6 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +84,8 @@ public class TaskFragment extends Fragment {
                             snapshot.child("date").getValue().toString(),
                             snapshot.child("time").getValue().toString(),
                             snapshot.child("taskid").getValue().toString(),
-                            snapshot.child("textnotes").getValue().toString());
+                            snapshot.child("textnotes").getValue().toString(),
+                            Integer.parseInt(snapshot.child("broadcastid").getValue().toString()));
 
                     taskArrayList.add(task);
                 }
@@ -174,7 +174,7 @@ public class TaskFragment extends Fragment {
                             subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
                             snapshot.child("date").getValue().toString(),
                             snapshot.child("time").getValue().toString(),
-                            snapshot.child("taskid").getValue().toString(), ""
+                            snapshot.child("taskid").getValue().toString(), "", 1
                             );
 
                     taskArrayList.add(task);

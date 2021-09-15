@@ -110,6 +110,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             intent.putExtra("Time", taskArrayList.get(position).getTime());
             intent.putExtra("TaskId", taskArrayList.get(position).getTaskid());
             intent.putExtra("TextNotes", taskArrayList.get(position).getTextnotes());
+            intent.putExtra("BroadcastId", taskArrayList.get(position).getBroadcastid());
             this.context.startActivity(intent);
             return false;
         });

@@ -12,6 +12,7 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
     private CardView text_note_cv, doodle_cv, edit_cv, add_subtask_cv;
 
     private String Task, Tag, Date, Time, TaskId, TextNotes;
+    private int BroadcastId;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,11 +57,13 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
                 Date = oldIntent.getStringExtra("Date");
                 Time = oldIntent.getStringExtra("Time");
                 TaskId = oldIntent.getStringExtra("TaskId");
+                BroadcastId = oldIntent.getIntExtra("BroadcastId", 0);
                 intent.putExtra("Task", Task);
                 intent.putExtra("Tag", Tag);
                 intent.putExtra("Date", Date);
                 intent.putExtra("Time", Time);
                 intent.putExtra("TaskId", TaskId);
+                intent.putExtra("BroadcastId", BroadcastId);
                 startActivity(intent);
                 break;
             case R.id.add_subtask_cv:
