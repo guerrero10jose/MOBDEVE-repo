@@ -54,8 +54,6 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
 
             ArrayList<Subtask> subtasks = new ArrayList<>();
 
-
-
             // session
             SessionManage sessionManage = new SessionManage(getApplicationContext());
 
@@ -66,7 +64,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
                     subtasks, false,
                     binding.tvDate.getText().toString(),
                     binding.tvTime.getText().toString(),
-                    key);
+                    key, "Notes empty!");
 
             reference.child(sessionManage.getSession()).child(key).setValue(task);
 

@@ -96,7 +96,8 @@ public class TaskFragment extends Fragment {
                             subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
                             snapshot.child("date").getValue().toString(),
                             snapshot.child("time").getValue().toString(),
-                            snapshot.child("taskid").getValue().toString());
+                            snapshot.child("taskid").getValue().toString(),
+                            snapshot.child("textnotes").getValue().toString());
 
                     taskArrayList.add(task);
                 }
@@ -185,7 +186,7 @@ public class TaskFragment extends Fragment {
                             subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
                             snapshot.child("date").getValue().toString(),
                             snapshot.child("time").getValue().toString(),
-                            snapshot.child("taskid").getValue().toString()
+                            snapshot.child("taskid").getValue().toString(), ""
                             );
 
                     taskArrayList.add(task);

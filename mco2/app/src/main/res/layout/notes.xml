@@ -18,7 +18,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/notes"
         android:background="@drawable/rounded_bg2"
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
         android:paddingTop="20dp"
         android:padding="5dp"
         android:layout_alignBottom="@id/task"
-        android:text="• Wake up early \n• Don't forget to eat after!"
+        android:text="Notes empty!"
         />
 
     <TextView
@@ -42,7 +42,7 @@
         android:backgroundTint="@color/pinkred"
         android:gravity="center"
         android:padding="5dp"
-        android:text="Run 5km exercise "
+        android:text="Task"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
