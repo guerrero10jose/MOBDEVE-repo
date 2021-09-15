@@ -102,6 +102,10 @@ public class MainView extends AppCompatActivity {
                 intent = new Intent(getApplicationContext(), Friends.class);
                 startActivity(intent);
                 break;
+            case R.id.settings:
+                intent = new Intent(getApplicationContext(), Settings.class);
+                startActivity(intent);
+                break;
             case R.id.logout:
                 logout();
                 finish();

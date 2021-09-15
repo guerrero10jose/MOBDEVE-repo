@@ -14,4 +14,8 @@
         <item>Date</item>
         <item>Tags</item>
     </string-array>
+
+    <string name="facebook_app_id">560967701902761</string>
+    <string name="fb_login_protocol_scheme">fb560967701902761</string>
+
 </resources>
