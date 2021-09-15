@@ -4,17 +4,20 @@ import java.util.ArrayList;
 
 public class Task {
     private String task, tag, time;
-    private String date;
+    private String date, taskid;
     private ArrayList<Subtask> subtasks;
     private boolean checked;
 
-    public Task(String task, String tag, ArrayList<Subtask> subtasks, boolean checked, String date, String time) {
+
+
+    public Task(String task, String tag, ArrayList<Subtask> subtasks, boolean checked, String date, String time, String taskid) {
         this.task = task;
         this.tag = tag;
         this.subtasks = subtasks;
         this.checked = checked;
         this.date = date;
         this.time = time;
+        this.taskid = taskid;
     }
 
     public String getTask() {
@@ -63,5 +66,13 @@ public class Task {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getTaskid() {
+        return taskid;
+    }
+
+    public void setTaskid(String taskid) {
+        this.taskid = taskid;
     }
 }

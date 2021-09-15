@@ -2,8 +2,9 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
@@ -53,19 +54,25 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
 
             ArrayList<Subtask> subtasks = new ArrayList<>();
 
-            Task task = new Task(binding.etTask.getText().toString(),
-                    binding.etTag.getText().toString(),
-                    subtasks, false,
-                    binding.tvDate.getText().toString(),
-                    binding.tvTime.getText().toString());
+
 
             // session
             SessionManage sessionManage = new SessionManage(getApplicationContext());
 
-            reference.child(sessionManage.getSession()).child(binding.etTask.getText().toString()).setValue(task);
+            String key = reference.push().getKey();
 
-            Intent intent = new Intent(getApplicationContext(), MainView.class);
-            startActivity(intent);
+            Task task = new Task(binding.etTask.getText().toString(),
+                    binding.etTag.getText().toString(),
+                    subtasks, false,
+                    binding.tvDate.getText().toString(),
+                    binding.tvTime.getText().toString(),
+                    key);
+
+            reference.child(sessionManage.getSession()).child(key).setValue(task);
+
+            // close keyboard before ending activity
+            InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             finish();
         });
 

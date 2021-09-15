@@ -2,6 +2,7 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,16 +84,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.layout_edit.setOnLongClickListener(v -> {
             Intent intent = new Intent(this.context, AddMenu.class);
-            intent.putExtra("Task", holder.tv_task.getText().toString());
+            intent.putExtra("Task", taskArrayList.get(position).getTask());
+            intent.putExtra("Tag", taskArrayList.get(position).getTag());
+            intent.putExtra("Date", taskArrayList.get(position).getDate());
+            intent.putExtra("Time", taskArrayList.get(position).getTime());
+            intent.putExtra("TaskId", taskArrayList.get(position).getTaskid());
             this.context.startActivity(intent);
             return false;
         });
 
         ArrayList<Subtask> subtasks = new ArrayList<>();
         for(int i = 0; i < taskArrayList.size(); i++) {
-            if (position == i && position < taskArrayList.get(position).getSubtasksArrayList().size()) {
+            if (position == i && position <= taskArrayList.get(position).getSubtasksArrayList().size()) {
+                Log.v("here", "inside if statement loop");
                 for (int j = 0; j < taskArrayList.get(position).getSubtasksArrayList().size(); j++) {
                     subtasks.add(taskArrayList.get(position).getSubtasksArrayList().get(j));
+                    Log.v("here", taskArrayList.get(position).getSubtasksArrayList().get(j).getSubtask());
                 }
             }
         }
@@ -100,7 +107,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.context);
         holder.rv_subtasklist.setLayoutManager(linearLayoutManager);
 
-        SubtaskAdapter subtaskAdapter = new SubtaskAdapter(subtasks, taskArrayList.get(position).getTask(), holder.rv_subtasklist.getContext());
+        SubtaskAdapter subtaskAdapter = new SubtaskAdapter(subtasks, taskArrayList.get(position).getTask(), taskArrayList.get(position).getTaskid(), holder.rv_subtasklist.getContext());
         holder.rv_subtasklist.setAdapter(subtaskAdapter);
     }
 

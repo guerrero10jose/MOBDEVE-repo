@@ -1,7 +1,9 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,21 +29,31 @@ public class AddSubtaskActivity extends AppCompatActivity {
 
         Intent OldIntent = getIntent();
         String MainTask = OldIntent.getStringExtra("Task");
+        String TaskId = OldIntent.getStringExtra("TaskId");
 
         binding.etTask.setText(MainTask);
         binding.etTask.setFocusable(false);
 
         binding.btnSave.setOnClickListener(v -> {
 
-            // to db
-            rootNode = FirebaseDatabase.getInstance();
-            reference = rootNode.getReference("tasks");
             // session
             SessionManage sessionManage = new SessionManage(getApplicationContext());
 
-            Subtask subtask = new Subtask(binding.etSubtask.getText().toString(), false);
-            reference.child(sessionManage.getSession()).child(binding.etTask.getText().toString()).child("subtasks").push().setValue(subtask);
+            // to db
+            rootNode = FirebaseDatabase.getInstance();
+            reference = rootNode.getReference("tasks").child(sessionManage.getSession()).child(TaskId).child("subtasks");
 
+            String key = reference.push().getKey();
+            Subtask subtask = new Subtask(binding.etSubtask.getText().toString(), false, key);
+
+            reference.child(key).setValue(subtask);
+
+            // close keyboard before ending activity
+            InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
 
 

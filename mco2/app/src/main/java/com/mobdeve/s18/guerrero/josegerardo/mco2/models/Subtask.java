@@ -2,12 +2,15 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2.models;
 
 public class Subtask {
 
-    private String Subtask;
+    private String Subtask, subtaskid;
     private boolean checked;
 
-    public Subtask(String subtask, boolean checked) {
+
+
+    public Subtask(String subtask, boolean checked, String subtaskid) {
         Subtask = subtask;
         this.checked = checked;
+        this.subtaskid = subtaskid;
     }
 
     public String getSubtask() {
@@ -25,5 +28,13 @@ public class Subtask {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public String getSubtaskid() {
+        return subtaskid;
+    }
+
+    public void setSubtaskid(String subtaskid) {
+        this.subtaskid = subtaskid;
     }
 }

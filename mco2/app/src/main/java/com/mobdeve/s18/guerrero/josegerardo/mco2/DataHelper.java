@@ -52,7 +52,7 @@ public class DataHelper {
                 "Exercise",
                 subtasks,
                 false, date,
-                "10:00"
+                "10:00", "1"
 
         ));
 
@@ -61,8 +61,7 @@ public class DataHelper {
                 subtasks,
                 false,
                 date,
-                "10:00"
-
+                "10:00", "1"
         ));
 
         data.add(new Task( "MC01 Proposal Submission",
@@ -70,7 +69,7 @@ public class DataHelper {
                 subtasks,
                 true,
                 date,
-                "10:00"
+                "10:00", "1"
 
         ));
 
