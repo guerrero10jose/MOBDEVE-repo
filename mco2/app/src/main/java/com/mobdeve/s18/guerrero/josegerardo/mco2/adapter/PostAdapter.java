@@ -38,6 +38,7 @@ public class PostAdapter
 
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("users");
+        reference2 = rootNode.getReference("posts");
     }
 
     @Override
@@ -62,6 +63,7 @@ public class PostAdapter
         //holder.btn_fave.setChecked(postArrayList.get(position).isLiked());
         holder.btn_fave.setChecked(false);
         holder.postid = postArrayList.get(position).getPostid();
+        holder.num_likes = postArrayList.get(position).getLikes();
 
         SessionManage sessionManage = new SessionManage(context);
         String user = sessionManage.getSession();
@@ -108,6 +110,7 @@ public class PostAdapter
         FirebaseDatabase rootNode;
         DatabaseReference reference;
         String postid;
+        int num_likes;
 
         SessionManage sessionManage = new SessionManage(context);
         String user = sessionManage.getSession();
@@ -148,6 +151,10 @@ public class PostAdapter
                                         LikedPost likedPost = new LikedPost(postid);
 
                                         reference.child(snapshot.getKey()).child("likedposts").child(id).setValue(likedPost);
+
+                                        // find the post and get num likes
+
+                                        reference2.child(postid).child("likes").setValue(num_likes + 1);
                                         break;
                                     }
                                 }
@@ -174,6 +181,7 @@ public class PostAdapter
 
                                                 // remove
                                                 reference.child(snapshot.getKey()).child("likedposts").child(snapshot1.getKey()).removeValue();
+                                                reference2.child(postid).child("likes").setValue(num_likes - 1);
                                                 break;
                                             }
 
@@ -213,6 +221,6 @@ public class PostAdapter
     private static LikedPost likedposts;
     private Context context;
     private FirebaseDatabase rootNode;
-    private DatabaseReference reference;
+    private DatabaseReference reference, reference2;
     private RecyclerViewClickListener listener;
 }
