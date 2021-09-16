@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Doodle;
+
 public class AddMenu extends AppCompatActivity implements View.OnClickListener {
 
     private CardView text_note_cv, doodle_cv, edit_cv, add_subtask_cv;
@@ -47,7 +49,9 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.doodle_cv:
-                intent = new Intent(getApplicationContext(), AddDoodleActivity.class);
+                intent = new Intent(getApplicationContext(), Doodles.class);
+                TaskId = oldIntent.getStringExtra("TaskId");
+                intent.putExtra("TaskId", TaskId);
                 startActivity(intent);
                 break;
             case R.id.edit_cv:
