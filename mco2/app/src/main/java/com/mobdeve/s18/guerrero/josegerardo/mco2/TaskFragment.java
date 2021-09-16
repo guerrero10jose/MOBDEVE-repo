@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +32,8 @@ public class TaskFragment extends Fragment {
     private TaskAdapter taskAdapter;
     private FirebaseDatabase rootNode;
     private DatabaseReference reference;
-
+    private Spinner s_filter;
+    private String selectedFilter, filter;
     public TaskFragment() {
         // Required empty public constructor
     }
@@ -41,107 +44,86 @@ public class TaskFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_task, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.rv_tasklist);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
         taskArrayList = new ArrayList<>();
 
-        // session
-        SessionManage sessionManage = new SessionManage(getContext());
+        s_filter = view.findViewById(R.id.s_filter);
+        selectedFilter = String.valueOf(s_filter.getSelectedItem());
 
-        // firebase
-        rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("tasks").child(sessionManage.getSession());
-        Query taskQuery = reference.orderByChild("task");
-
-        taskQuery.addValueEventListener(new ValueEventListener() {
+        s_filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedFilter = parent.getItemAtPosition(position).toString();
 
-                taskArrayList.clear();
+                if(selectedFilter.equals("Name")) {
+                    filter = "task";
+                }
+                else if(selectedFilter.equals("Tags")) {
+                    filter = "tag";
+                }
+                else {
+                    filter = "dateVal";
+                }
+                // session
+                SessionManage sessionManage = new SessionManage(getContext());
 
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                // firebase
+                rootNode = FirebaseDatabase.getInstance();
+                reference = rootNode.getReference("tasks").child(sessionManage.getSession());
+                Query taskQuery = reference.orderByChild(filter);
 
-                    ArrayList<Subtask> subtasks = new ArrayList<>();
+                taskQuery.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        taskArrayList.clear();
+
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                            ArrayList<Subtask> subtasks = new ArrayList<>();
 
 
-                    if(snapshot.child("subtasks").exists())
-                    {
-                        Iterator<DataSnapshot> items = snapshot.child("subtasks").getChildren().iterator();;
-                        while (items.hasNext()) {
-                            DataSnapshot item = items.next();
-                            String tempSubtask = item.child("subtask").getValue().toString();
-                            Boolean tempChecked = Boolean.parseBoolean(item.child("checked").getValue().toString());
-                            String tempSubtaskId = item.child("subtaskid").getValue().toString();
-                            Subtask temp = new Subtask(tempSubtask, tempChecked, tempSubtaskId);
-                            subtasks.add(temp);
+                            if(snapshot.child("subtasks").exists())
+                            {
+                                Iterator<DataSnapshot> items = snapshot.child("subtasks").getChildren().iterator();;
+                                while (items.hasNext()) {
+                                    DataSnapshot item = items.next();
+                                    String tempSubtask = item.child("subtask").getValue().toString();
+                                    Boolean tempChecked = Boolean.parseBoolean(item.child("checked").getValue().toString());
+                                    String tempSubtaskId = item.child("subtaskid").getValue().toString();
+                                    Subtask temp = new Subtask(tempSubtask, tempChecked, tempSubtaskId);
+                                    subtasks.add(temp);
+                                }
+                            }
+                            Task task = new Task(snapshot.child("task").getValue().toString(),
+                                    snapshot.child("tag").getValue().toString(),
+                                    subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
+                                    snapshot.child("date").getValue().toString(),
+                                    snapshot.child("time").getValue().toString(),
+                                    snapshot.child("taskid").getValue().toString(),
+                                    snapshot.child("textnotes").getValue().toString(),
+                                    Integer.parseInt(snapshot.child("broadcastid").getValue().toString()),
+                                    Long.parseLong(snapshot.child("dateVal").getValue().toString()));
+
+                            taskArrayList.add(task);
                         }
+                        taskAdapter.notifyDataSetChanged();
                     }
 
-                    Task task = new Task(snapshot.child("task").getValue().toString(),
-                            snapshot.child("tag").getValue().toString(),
-                            subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
-                            snapshot.child("date").getValue().toString(),
-                            snapshot.child("time").getValue().toString(),
-                            snapshot.child("taskid").getValue().toString(),
-                            snapshot.child("textnotes").getValue().toString(),
-                            Integer.parseInt(snapshot.child("broadcastid").getValue().toString()));
+                    @Override
+                    public void onCancelled(DatabaseError error) {
 
-                    taskArrayList.add(task);
-                }
-                taskAdapter.notifyDataSetChanged();
+                    }
+                });
+                //Toast.makeText(getApplicationContext(), selectedText, Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
 
-
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//               // taskArrayList = new ArrayList<>();
-//                taskArrayList.clear();
-//
-//                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    //Task task = snapshot.getValue(Task.class);
-//
-//                    ArrayList<Subtask> subtasks = new ArrayList<>();
-//
-//                    if(snapshot.child("subtasks").exists())
-//                    {
-//                        Iterator<DataSnapshot> items = snapshot.child("subtasks").getChildren().iterator();;
-//                        while (items.hasNext()) {
-//                            DataSnapshot item = items.next();
-//                            String tempSubtask = item.child("subtask").getValue().toString();
-//                            Boolean tempChecked = Boolean.parseBoolean(item.child("checked").getValue().toString());
-//                            Subtask temp = new Subtask(tempSubtask, tempChecked);
-//                            subtasks.add(temp);
-//
-//                        }
-//                    }
-//
-//                    Task task = new Task(snapshot.child("task").getValue().toString(),
-//                            snapshot.child("tag").getValue().toString(),
-//                            subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
-//                            snapshot.child("date").getValue().toString(),
-//                            snapshot.child("time").getValue().toString()
-//                    );
-//
-//                    taskArrayList.add(task);
-//                }
-//                taskAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//
-//            }
-//        });
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         taskAdapter = new TaskAdapter(this.getContext(), taskArrayList);
         recyclerView.setAdapter(taskAdapter);
 
@@ -174,7 +156,7 @@ public class TaskFragment extends Fragment {
                             subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
                             snapshot.child("date").getValue().toString(),
                             snapshot.child("time").getValue().toString(),
-                            snapshot.child("taskid").getValue().toString(), "", 1
+                            snapshot.child("taskid").getValue().toString(), "", 1, 1
                             );
 
                     taskArrayList.add(task);

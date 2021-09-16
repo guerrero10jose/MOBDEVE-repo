@@ -36,19 +36,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         this.context = context;
     }
 
-    public void addTasks(ArrayList<Task> taskArrayList) {
-        this.taskArrayList.clear();
-        this.taskArrayList.addAll(taskArrayList);
-        notifyDataSetChanged();
-    }
-
-    public void addTask(Task task) {
-        taskArrayList.add(0, task);
-        notifyItemInserted(0);
-        notifyDataSetChanged();
-    }
-
-
     @Override
     public TaskAdapter.TaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -64,7 +51,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.tv_tag.setText(taskArrayList.get(position).getTag());
         holder.tv_task.setText(taskArrayList.get(position).getTask());
-        holder.btn_check.setChecked(taskArrayList.get(position).isChecked());
 
         String shortDate = "";
         String day = "";
@@ -102,6 +88,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             }
         });
 
+        holder.btn_check.setChecked(taskArrayList.get(position).isChecked());
+
         holder.layout_edit.setOnLongClickListener(v -> {
             Intent intent = new Intent(this.context, AddMenu.class);
             intent.putExtra("Task", taskArrayList.get(position).getTask());
@@ -117,7 +105,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         ArrayList<Subtask> subtasks = new ArrayList<>();
         for(int i = 0; i < taskArrayList.size(); i++) {
-            if (position == i && position <= taskArrayList.get(position).getSubtasksArrayList().size()) {
+            if (position == i) {
                 for (int j = 0; j < taskArrayList.get(position).getSubtasksArrayList().size(); j++) {
                     subtasks.add(taskArrayList.get(position).getSubtasksArrayList().get(j));
                 }

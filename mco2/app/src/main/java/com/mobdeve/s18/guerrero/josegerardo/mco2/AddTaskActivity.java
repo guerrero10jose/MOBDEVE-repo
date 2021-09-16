@@ -69,6 +69,15 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
 
             String key = reference.push().getKey();
 
+            SimpleDateFormat getdateformat = new SimpleDateFormat("E, MMM dd yyyy HH:mm");
+            Date dateval = null;
+            try {
+                dateval = getdateformat.parse(binding.tvDate.getText().toString() + " " + binding.tvTime.getText().toString());
+                Log.v("here", "dateval = " + dateval.getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             int broadcastid = (int) System.currentTimeMillis();
             Log.v("here", "broadcastid = " + broadcastid);
             Task task = new Task(binding.etTask.getText().toString(),
@@ -76,7 +85,8 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
                     subtasks, false,
                     binding.tvDate.getText().toString(),
                     binding.tvTime.getText().toString(),
-                    key, "Notes empty!", broadcastid);
+                    key, "Notes empty!", broadcastid, dateval.getTime());
+            Log.v("here", "dateval = " + dateval.getTime());
 
             reference.child(sessionManage.getSession()).child(key).setValue(task);
 

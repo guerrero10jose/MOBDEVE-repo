@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Task {
     private String task, tag, time;
     private String date, taskid, textnotes;
+    private long dateval;
     private ArrayList<Subtask> subtasks;
     private int broadcastid;
     private boolean checked;
@@ -12,7 +13,7 @@ public class Task {
 
 
 
-    public Task(String task, String tag, ArrayList<Subtask> subtasks, boolean checked, String date, String time, String taskid, String textnotes, int broadcastid) {
+    public Task(String task, String tag, ArrayList<Subtask> subtasks, boolean checked, String date, String time, String taskid, String textnotes, int broadcastid, long dateval) {
         this.task = task;
         this.tag = tag;
         this.subtasks = subtasks;
@@ -22,6 +23,7 @@ public class Task {
         this.taskid = taskid;
         this.textnotes = textnotes;
         this.broadcastid = broadcastid;
+        this.dateval = dateval;
 
     }
 
@@ -95,5 +97,13 @@ public class Task {
 
     public void setBroadcastid(int broadcastid) {
         this.broadcastid = broadcastid;
+    }
+
+    public long getDateVal() {
+        return dateval;
+    }
+
+    public void setDateVal(long dateval) {
+        this.dateval = dateval;
     }
 }
