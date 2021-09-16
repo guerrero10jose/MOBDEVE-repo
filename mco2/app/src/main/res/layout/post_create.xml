@@ -92,13 +92,14 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.65" />
 
-        <Button
+        <com.facebook.share.widget.ShareButton
             android:id="@+id/btn_share"
             android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="35dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
+            android:background="@color/pinkred"
             android:backgroundTint="@color/pinkred"
             android:text="SHARE"
             android:textColor="@color/white"

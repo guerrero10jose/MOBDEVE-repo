@@ -25,7 +25,7 @@
         android:backgroundTint="@color/pinkred"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="10dp"/>
+        android:layout_margin="25dp"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager2"

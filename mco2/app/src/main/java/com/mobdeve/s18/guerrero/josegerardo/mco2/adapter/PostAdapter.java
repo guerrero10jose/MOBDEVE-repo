@@ -35,6 +35,9 @@ public class PostAdapter
         this.postArrayList = postArrayList;
         this.context = context;
         this.listener = listener;
+
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("users");
     }
 
     @Override
@@ -58,61 +61,26 @@ public class PostAdapter
         holder.task.setText(postArrayList.get(position).getTask());
         //holder.btn_fave.setChecked(postArrayList.get(position).isLiked());
         holder.btn_fave.setChecked(false);
-
-        FirebaseDatabase rootNode;
-        DatabaseReference reference;
-
-        // for like button
-        //firebase
-        rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("users");
+        holder.postid = postArrayList.get(position).getPostid();
 
         SessionManage sessionManage = new SessionManage(context);
+        String user = sessionManage.getSession();
 
-        String key = sessionManage.getSession();
-
-        Picasso.get().load(postArrayList.get(position).getModelname()).into(holder.cap_image);
-
-        /*reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    if(snapshot.child("username").getValue().toString().equals(key)) {
-                        //Toast.makeText(context, snapshot.getKey(), Toast.LENGTH_SHORT).show();
+                    if(snapshot.child("username").getValue().toString().equals(user)) {
 
-                        //String id = reference.child(snapshot.getKey()).child("likedposts").push().getKey();
+                        // get data from
+                        for(DataSnapshot snapshot1 : snapshot.child("likedposts").getChildren()) {
 
-                        //LikedPost postL = new LikedPost("0", postArrayList.get(position).getPostid());
-
-                        //likedposts.add(postArrayList.get(position).getPostid());
-
-                        String kel = postArrayList.get(position).getPostid();
-
-                        likedposts = new LikedPost(kel);
-                        user_key = snapshot.getKey();
-
-                        DatabaseReference ref2 = rootNode.getReference().child("users").child(user_key);
-
-                        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot snapshot) {
-                                if(snapshot.child("likedposts").exists()) {
-                                    //Toast.makeText(context, "yes", Toast.LENGTH_SHORT).show();
-                                    Log.v("trulyy", snapshot.child("likedposts").getValue().toString());
-                                }
+                            if(snapshot1.child("key").getValue().toString().equals(postArrayList.get(position).getPostid())) {
+                                holder.btn_fave.setChecked(true);
                             }
-
-                            @Override
-                            public void onCancelled(DatabaseError error) {
-
-                            }
-                        });
-
-
-                        //reference.child(snapshot.getKey()).child("likedposts").child(id).setValue(postL);
-                        break;
+                        }
                     }
                 }
             }
@@ -123,31 +91,7 @@ public class PostAdapter
             }
         });
 
-        /*
-        if(rootNode.getReference("users").child(user_key).child("likedposts") != null) {
-            reference = rootNode.getReference("users").child(user_key).child("likedposts");
-
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if(postArrayList.get(position).getPostid().equals(snapshot.getValue().toString())) {
-                            holder.btn_fave.setChecked(true);
-                            break;
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-
-                }
-            });
-        }
-
-         */
+        Picasso.get().load(postArrayList.get(position).getModelname()).into(holder.cap_image);
 
     }
 
@@ -163,6 +107,10 @@ public class PostAdapter
         ToggleButton btn_fave;
         FirebaseDatabase rootNode;
         DatabaseReference reference;
+        String postid;
+
+        SessionManage sessionManage = new SessionManage(context);
+        String user = sessionManage.getSession();
 
         public PostViewHolder(View view) {
             super(view);
@@ -180,52 +128,75 @@ public class PostAdapter
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("users");
 
-            /*
             btn_fave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
+                    // add to liked posts
                     if(btn_fave.isChecked()) {
 
+                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                                    if(snapshot.child("username").getValue().toString().equals(user)) {
+
+                                        String id = reference.child(snapshot.getKey()).child("likedposts").push().getKey();
+
+                                        LikedPost likedPost = new LikedPost(postid);
+
+                                        reference.child(snapshot.getKey()).child("likedposts").child(id).setValue(likedPost);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+
+                            }
+                        });
                     } else {
 
-                        String id = reference.child(user_key).child("likedposts").push().getKey();
+                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        reference.child(user_key).child("likedposts").child(id).setValue(likedposts);
+                                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                                    if(snapshot.child("username").getValue().toString().equals(user)) {
+
+                                        for(DataSnapshot snapshot1 : snapshot.child("likedposts").getChildren()) {
+
+                                            if(snapshot1.child("key").getValue().toString().equals(postid)) {
+
+                                                // remove
+                                                reference.child(snapshot.getKey()).child("likedposts").child(snapshot1.getKey()).removeValue();
+                                                break;
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+
+                            }
+                        });
+
                     }
+
                 }
-            }); */
-
-
-            /*
-            //firebase
-            rootNode = FirebaseDatabase.getInstance();
-            reference = rootNode.getReference("users");
-
-            SessionManage sessionManage = new SessionManage(context);
-
-            String key = sessionManage.getSession();
-
-            btn_fave.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    if(btn_fave.isChecked()) {
-                        //Toast.makeText(context, "gay", Toast.LENGTH_SHORT).show();
-
-
-
-                        //btn_fave.setChecked(false);
-                    } else {
-                        //Toast.makeText(context, "notgay", Toast.LENGTH_SHORT).show();
-                        //btn_fave.setChecked(true);
-                    }
-                }
-            }); */
+            });
 
             view.setOnClickListener(this);
         }
+
+
 
         @Override
         public void onClick(View v) {
@@ -241,5 +212,7 @@ public class PostAdapter
     private ArrayList<Post> postArrayList;
     private static LikedPost likedposts;
     private Context context;
+    private FirebaseDatabase rootNode;
+    private DatabaseReference reference;
     private RecyclerViewClickListener listener;
 }
