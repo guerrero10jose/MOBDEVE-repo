@@ -1,13 +1,11 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +23,6 @@ import java.util.ArrayList;
 
 public class Friends extends AppCompatActivity {
 
-    private DataHelper3 dataHelper;
     private ArrayList<Friend> friendArrayList;
     private FriendAdapter friendAdapter;
     private RecyclerView recyclerView;
@@ -48,7 +45,6 @@ public class Friends extends AppCompatActivity {
         txt_fld = findViewById(R.id.txtfld_add);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //populateList();
 
         friendArrayList = new ArrayList<>();
         loadfriends();
@@ -174,12 +170,6 @@ public class Friends extends AppCompatActivity {
             }
         });
     }
-
-    private void populateList() {
-        dataHelper = new DataHelper3();
-        friendArrayList = dataHelper.initializeData();
-    }
-
     private void setKey(String key){
         this.userkey = key;
     }

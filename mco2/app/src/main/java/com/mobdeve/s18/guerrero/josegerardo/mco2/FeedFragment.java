@@ -2,16 +2,13 @@ package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +22,6 @@ import java.util.ArrayList;
 
 public class FeedFragment extends Fragment {
 
-    private DataHelper dataHelper;
     private ArrayList<Post> postArrayList;
     private PostAdapter postAdapter;
     private PostAdapter.RecyclerViewClickListener listener;
@@ -47,8 +43,6 @@ public class FeedFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         postArrayList = new ArrayList<>();
-
-        //populateList();
 
         getposts();
 
@@ -122,10 +116,5 @@ public class FeedFragment extends Fragment {
 
             }
         });
-    }
-
-    private void populateList() {
-        dataHelper = new DataHelper();
-        postArrayList = dataHelper.initializeData();
     }
 }

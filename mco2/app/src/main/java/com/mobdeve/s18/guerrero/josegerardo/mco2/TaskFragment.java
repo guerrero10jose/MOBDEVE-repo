@@ -27,7 +27,6 @@ import java.util.Iterator;
 
 public class TaskFragment extends Fragment {
 
-    private DataHelper dataHelper;
     private ArrayList<Task> taskArrayList;
     private TaskAdapter taskAdapter;
     private FirebaseDatabase rootNode;
@@ -130,50 +129,4 @@ public class TaskFragment extends Fragment {
         return view;
     }
 
-    private void populateList() {
-
-        // session
-        SessionManage sessionManage = new SessionManage(getContext());
-
-        // firebase
-        rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("tasks").child(sessionManage.getSession());
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                taskArrayList = new ArrayList<>();
-                taskArrayList.clear();
-
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    //Task task = snapshot.getValue(Task.class);
-
-                    ArrayList<Subtask> subtasks = new ArrayList<>();
-
-                    Task task = new Task(snapshot.child("task").getValue().toString(),
-                            snapshot.child("tag").getValue().toString(),
-                            subtasks, Boolean.parseBoolean(snapshot.child("checked").getValue().toString()),
-                            snapshot.child("date").getValue().toString(),
-                            snapshot.child("time").getValue().toString(),
-                            snapshot.child("taskid").getValue().toString(), "", 1, 1
-                            );
-
-                    taskArrayList.add(task);
-
-                    //Log.v("here", Integer.toString(taskArrayList.size()));
-
-                }
-                taskAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-
-            }
-        });
-
-        /*dataHelper = new DataHelper();
-        taskArrayList = dataHelper.initializeTaskData();*/
-    }
 }

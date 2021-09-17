@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +13,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.adapter.PostAdapter;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.adapter.UserPostAdapter;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Post;
@@ -23,7 +21,6 @@ import java.util.ArrayList;
 
 public class IndivPost extends AppCompatActivity {
 
-    private DataHelper dataHelper;
     private ArrayList<Post> postArrayList;
     private UserPostAdapter postAdapter;
     private RecyclerView recyclerView;
@@ -38,7 +35,6 @@ public class IndivPost extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_pstlist);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //populateList();
 
         postArrayList = new ArrayList<>();
 
@@ -90,11 +86,6 @@ public class IndivPost extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void populateList() {
-        dataHelper = new DataHelper();
-        postArrayList = dataHelper.initializeData();
     }
 
     private void setOnClickListener() {

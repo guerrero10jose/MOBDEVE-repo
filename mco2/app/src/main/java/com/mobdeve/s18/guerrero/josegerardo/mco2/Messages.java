@@ -20,8 +20,6 @@ import com.mobdeve.s18.guerrero.josegerardo.mco2.models.Message;
 import java.util.ArrayList;
 
 public class Messages extends AppCompatActivity {
-
-    private DataHelper2 dataHelper;
     private ArrayList<Message> messageArrayList;
     private MessageAdapter messageAdapter;
     private RecyclerView recyclerView;
@@ -38,7 +36,6 @@ public class Messages extends AppCompatActivity {
         loadmessages();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-      // populateList();
 
         messageAdapter = new MessageAdapter(getApplicationContext(), messageArrayList);
         recyclerView.setAdapter(messageAdapter);
@@ -90,9 +87,5 @@ public class Messages extends AppCompatActivity {
 
             }
         });
-    }
-    private void populateList() {
-        dataHelper = new DataHelper2();
-        messageArrayList = dataHelper.initializeData();
     }
 }

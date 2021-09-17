@@ -69,19 +69,9 @@
         android:textColor="@color/pinkred"
         android:backgroundTint="@color/white"
         android:text="Submit"
-        app:layout_constraintRight_toLeftOf="@id/guideline"
+        app:layout_constraintLeft_toRightOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/drawing_pad"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <Button
-        android:id="@+id/btn_share"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/pinkred"
-        android:backgroundTint="@color/white"
-        android:text="Share"
-        app:layout_constraintLeft_toRightOf="@id/guideline"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
