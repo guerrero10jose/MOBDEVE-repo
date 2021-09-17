@@ -168,7 +168,7 @@
                     android:id="@+id/add_subtask_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/edit_ic" />
+                    android:src="@drawable/ic_add" />
 
                 <TextView
                     android:id="@+id/add_subtask_lbl"

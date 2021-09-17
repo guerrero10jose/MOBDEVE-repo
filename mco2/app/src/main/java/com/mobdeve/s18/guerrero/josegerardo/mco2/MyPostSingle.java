@@ -1,16 +1,11 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,9 +13,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyPostSingle extends AppCompatActivity {
 
@@ -35,14 +27,21 @@ public class MyPostSingle extends AppCompatActivity {
 
         EditText caption;
         Button btn_save;
+        TextView task;
+
+        Bundle extras = getIntent().getExtras();
 
         caption = findViewById(R.id.et_cap);
         btn_save = findViewById(R.id.btn_save);
+        task = findViewById(R.id.task);
+
+        task.setText(extras.getString("task"));
+
+
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle extras = getIntent().getExtras();
 
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("posts");

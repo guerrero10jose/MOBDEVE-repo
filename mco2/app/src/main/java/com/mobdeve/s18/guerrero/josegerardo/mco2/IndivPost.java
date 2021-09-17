@@ -95,6 +95,7 @@ public class IndivPost extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), MyPostSingle.class);
                 intent.putExtra("postid", postArrayList.get(position).getPostid());
+                intent.putExtra("task", postArrayList.get(position).getTask());
                 startActivity(intent);
             }
         };
