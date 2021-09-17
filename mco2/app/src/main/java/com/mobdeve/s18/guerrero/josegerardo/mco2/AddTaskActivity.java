@@ -122,6 +122,8 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
             // close keyboard before ending activity
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            Intent newIntent = new Intent(this, MainView.class);
+            startActivity(newIntent);
             finish();
         });
 
