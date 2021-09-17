@@ -11,6 +11,7 @@
     app:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/c_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -37,6 +38,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/remove_btn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginRight="10dp"

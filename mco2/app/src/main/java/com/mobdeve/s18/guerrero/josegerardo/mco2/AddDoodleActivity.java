@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -138,6 +139,7 @@ public class AddDoodleActivity extends AppCompatActivity implements View.OnClick
                                 }
                                 Doodle doodle = new Doodle(tempTitle, id, uri.toString());
                                 reference.child(id).setValue(doodle);
+                                Toast.makeText(getApplicationContext(), "Doodle Added", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });

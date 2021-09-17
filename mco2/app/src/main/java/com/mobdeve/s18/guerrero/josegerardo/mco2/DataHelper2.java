@@ -15,12 +15,14 @@ public class DataHelper2 {
         data.add(new Message(
                 usernames[0],
                 "Hi! How are you?",
-                userImages[0]));
+                userImages[0],
+                "Hi! How are you?"));
 
         data.add(new Message(
                 usernames[1],
                 "You should stop procrastinating good sir...",
-                userImages[1]));
+                userImages[1],
+                "Hi! How are you?"));
 
         Collections.shuffle(data);
 

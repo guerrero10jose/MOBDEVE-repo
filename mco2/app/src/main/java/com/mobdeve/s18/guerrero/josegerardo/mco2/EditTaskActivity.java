@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -108,7 +109,7 @@ public class EditTaskActivity extends AppCompatActivity implements DatePickerDia
             calendar.set(date1.getYear() + 1900, date1.getMonth(), date1.getDate(), date2.getHours(), date2.getMinutes(), 0);
 
             alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
+            Toast.makeText(getApplicationContext(), "Task Saved", Toast.LENGTH_SHORT).show();
 
             // close keyboard before ending activity
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -136,6 +137,8 @@ public class EditTaskActivity extends AppCompatActivity implements DatePickerDia
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, broadcastid, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmManager.cancel(pendingIntent);
             pendingIntent.cancel();
+
+            Toast.makeText(getApplicationContext(), "Task Removed", Toast.LENGTH_SHORT).show();
 
             // close keyboard before ending activity
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);

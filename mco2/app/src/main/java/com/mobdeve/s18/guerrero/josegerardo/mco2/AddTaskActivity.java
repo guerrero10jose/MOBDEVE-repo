@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -117,6 +118,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
 
             alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
+            Toast.makeText(getApplicationContext(), "Task Added", Toast.LENGTH_SHORT).show();
             // close keyboard before ending activity
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);

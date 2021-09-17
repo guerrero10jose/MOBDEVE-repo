@@ -28,6 +28,7 @@
         <activity android:name=".AddMenu"/>
         <activity android:name=".AddDoodleActivity"/>
         <activity android:name=".Doodles"/>
+        <activity android:name=".SelectFriend"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

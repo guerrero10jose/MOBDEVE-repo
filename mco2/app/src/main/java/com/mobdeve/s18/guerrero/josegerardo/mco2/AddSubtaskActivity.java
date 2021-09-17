@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,6 +49,7 @@ public class AddSubtaskActivity extends AppCompatActivity {
 
             reference.child(key).setValue(subtask);
 
+            Toast.makeText(getApplicationContext(), "Subtask Added", Toast.LENGTH_SHORT).show();
             // close keyboard before ending activity
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);

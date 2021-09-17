@@ -1,12 +1,12 @@
 package com.mobdeve.s18.guerrero.josegerardo.mco2.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,7 +66,7 @@ public class DoodlesAdapter extends RecyclerView.Adapter<DoodlesAdapter.DoodlesV
                 storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Log.v("here", "photo deleted");
+                        Toast.makeText(v.getContext(), "Doodle Removed", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

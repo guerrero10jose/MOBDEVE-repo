@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,6 +48,8 @@ public class EditSubtaskActivity extends AppCompatActivity{
             // edit
             reference.child(sessionManage.getSession()).child(MainTaskId).child("subtasks").child(SubtaskId).child("subtask").setValue(binding.etTask.getText().toString());
 
+            Toast.makeText(getApplicationContext(), "Subtask Saved", Toast.LENGTH_SHORT).show();
+
             // close keyboard before ending activity
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -64,6 +67,7 @@ public class EditSubtaskActivity extends AppCompatActivity{
             //delete
             reference.child(sessionManage.getSession()).child(MainTaskId).child("subtasks").child(SubtaskId).removeValue();
 
+            Toast.makeText(getApplicationContext(), "Subtask Removed", Toast.LENGTH_SHORT).show();
             // close keyboard before ending activity
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);

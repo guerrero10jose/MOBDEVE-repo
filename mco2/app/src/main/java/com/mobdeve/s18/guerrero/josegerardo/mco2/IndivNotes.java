@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.mobdeve.s18.guerrero.josegerardo.mco2.management.SessionManage;
 
 public class IndivNotes extends AppCompatActivity {
-    private Button btn_edit, btn_save;
+    private Button btn_edit, btn_save, btn_share;
     private TextView task;
     private EditText notes;
 
@@ -27,6 +28,7 @@ public class IndivNotes extends AppCompatActivity {
 
         btn_edit = findViewById(R.id.btn_edit);
         btn_save = findViewById(R.id.btn_ok);
+        btn_share = findViewById(R.id.btn_share);
 
         task = findViewById(R.id.task);
         notes = findViewById(R.id.notes);
@@ -40,6 +42,15 @@ public class IndivNotes extends AppCompatActivity {
         notes.setText(TextNotes);
 
         notes.setFocusable(false);
+
+        btn_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SelectFriend.class);
+                intent.putExtra("Note", notes.getText().toString());
+                startActivity(intent);
+            }
+        });
 
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +75,7 @@ public class IndivNotes extends AppCompatActivity {
                 DatabaseReference reference = rootNode.getReference("tasks").child(sessionManage.getSession()).child(TaskId).child("textnotes");
 
                 reference.setValue(notes.getText().toString());
-
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
                 notes.setFocusable(false);
             }
         });

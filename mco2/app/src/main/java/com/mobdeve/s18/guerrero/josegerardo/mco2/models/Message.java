@@ -14,13 +14,19 @@ public class Message {
         return userImageId;
     }
 
-    private String username, message;
+    public String getMessageId() {
+        return messageId;
+    }
+
+    private String username, message, messageId;
+
     private int userImageId;
 
-    public Message(String username, String message, int userImageId) {
+    public Message(String username, String message, int userImageId, String messageId) {
         this.username = username;
         this.message = message;
         this.userImageId = userImageId;
+        this.messageId = messageId;
     }
 
 
